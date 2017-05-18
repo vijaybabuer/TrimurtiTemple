@@ -36,11 +36,11 @@
 }
 
 .materialize-red.lighten-2 {
-  background-color: #3299BB !important;
+  background-color: #fb8c00 !important;
 }
 
 .materialize-red-text.text-lighten-2 {
-  color: #3299BB !important;
+  color: #fb8c00 !important;
 }
 
 .materialize-red.lighten-1 {
@@ -2621,7 +2621,7 @@ a {
 blockquote {
   margin: 20px 0;
   padding-left: 1.5rem;
-  border-left: 5px solid #3299BB;
+  border-left: 5px solid #fb8c00;
 }
 
 i {
@@ -2681,7 +2681,7 @@ video.responsive-video {
 }
 
 .pagination li.active {
-  background-color: #3299BB;
+  background-color: #fb8c00;
 }
 
 .pagination li.disabled a {
@@ -2867,7 +2867,7 @@ ul.staggered-list li {
 
 footer.page-footer {
   padding-top: 20px;
-  background-color: #3299BB;
+  background-color: #fb8c00;
 }
 
 footer.page-footer .footer-copyright {
@@ -3981,7 +3981,7 @@ nav ul a span.badge {
 
 nav {
   color: #fff;
-  background-color: #3299BB;
+  background-color: #fb8c00;
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -4643,7 +4643,7 @@ small {
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
-  color: #3299BB;
+  color: #fb8c00;
   margin-right: 24px;
   transition: color .3s ease;
   text-transform: uppercase;
@@ -4762,7 +4762,7 @@ small {
   overflow-y: hidden;
   height: 45px;
   width: 100%;
-  background-color: #3299BB;
+  background-color: #ffffff;
   margin: 0 0;
   white-space: nowrap;
   font-weight: 900;
@@ -4775,12 +4775,12 @@ small {
 .tabs.tabs-transparent .tab a,
 .tabs.tabs-transparent .tab.disabled a,
 .tabs.tabs-transparent .tab.disabled a:hover {
-  color: rgba(255, 255, 255, 1);
+  color: rgba(28, 57, 124, 1);
 }
 
 .tabs.tabs-transparent .tab a:hover,
 .tabs.tabs-transparent .tab a.active {
-  color: #ffffff;
+  color: #1c397c;
 }
 
 .tabs.tabs-transparent .indicator {
@@ -4810,7 +4810,7 @@ small {
 }
 
 .tabs .tab a {
-  color: #ffffff;
+  color: #1c397c;
   display: block;
   width: 100%;
   height: 100%;
@@ -4823,12 +4823,12 @@ small {
 
 .tabs .tab a:hover, .tabs .tab a.active {
   background-color: transparent;
-  color: #ffffff;
+  color: #1c397c;
 }
 
 .tabs .tab.disabled a,
 .tabs .tab.disabled a:hover {
-  color: #ffffff;
+  color: #1c397c;
   cursor: default;
 }
 
@@ -4836,7 +4836,7 @@ small {
   position: absolute;
   bottom: 0;
   height: 5px;
-  background-color: #ffffff;
+  background-color: #1c397c;
   will-change: left, right;
 }
 
@@ -6900,13 +6900,13 @@ input[type=range]:focus::-ms-fill-upper {
 .table-of-contents a:hover {
   color: #a8a8a8;
   padding-left: 19px;
-  border-left: 1px solid #3299BB;
+  border-left: 1px solid #fb8c00;
 }
 
 .table-of-contents a.active {
   font-weight: 500;
   padding-left: 18px;
-  border-left: 2px solid #3299BB;
+  border-left: 2px solid #fb8c00;
 }
 
 .side-nav {
@@ -7104,7 +7104,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .side-nav .collapsible-body > ul:not(.collapsible) > li.active,
 .side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active {
-  background-color: #3299BB;
+  background-color: #fb8c00;
 }
 
 .side-nav .collapsible-body > ul:not(.collapsible) > li.active a,

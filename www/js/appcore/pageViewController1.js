@@ -277,7 +277,7 @@ var pageViewController = function(sb, input){
 		try{
 		sb.dom.find('#storiesDiv').html(snippetResponse);
 		}catch(err){
-			console.log('Error while loading Main Page' + err);	
+			alert('Error while loading Main Page' + err);	
 		}
 	}
 	
@@ -302,7 +302,6 @@ var pageViewController = function(sb, input){
 			updateFooterMessage("Proceeding after check login status");
 			var snippetUrl = null;
 			var data = null;
-			sb.dom.find('#storiesDiv').html('<div class="progress"><div class="indeterminate" style="width: 10%"></div></div>');
 			snippetUrl = "https://www.trimurtitemple.org";
 			if(sb.utilities.isUserLoggedIn()){
 				Core.publish('startUserLogo', null);				
@@ -416,25 +415,6 @@ var pageViewController = function(sb, input){
 				alert(e);	
 		}
 	}
-	
-	function _loadMenuItemPage(snippetResponse){
-		try{
-		sb.dom.find('#storiesDiv').html(snippetResponse);
-		}catch(err){
-			console.log('Error while loading Main Page' + err);	
-		}
-	}
-	
-	function _menuItemAnchorClickEvent(e){
-		e.preventDefault();
-		var appPageUrl = sb.dom.find(this).attr('href');
-		sb.dom.find('#storiesDiv').html('<div class="progress"><div class="indeterminate" style="width: 10%"></div></div>');
-		sb.dom.find('#rightPanel').panel('close');
-		sb.utilities.defaultGet(appPageUrl, _loadMenuItemPage, _errorStartController);
-	}
-	function _setMenuItemAnchorClickEvent(){
-		sb.dom.find(this).click(_menuItemAnchorClickEvent);
-	}
 	function _startControllerV2(){
 		try{			
 			var screenHeight = sb.dom.find(window).height();
@@ -451,7 +431,6 @@ var pageViewController = function(sb, input){
 			sb.dom.find('#mainPage').page({
 				domCache: true							  
 			});
-			sb.dom.find('.menu-item').find('a').each(_setMenuItemAnchorClickEvent);
 		 $('.modal').modal({
 			  dismissible: true, // Modal can be dismissed by clicking outside of the modal
 			  opacity: .5, // Opacity of modal background

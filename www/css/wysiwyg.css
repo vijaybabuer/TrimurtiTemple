@@ -9,9 +9,6 @@ body, html, .appBody{
 	height: 100%;
 	padding: 0px !important;
 }
-a{
-	text-decoration: none;
-}
 h1{
 	font-size: 2.25em;
 	font-weight: 500;
@@ -43,7 +40,7 @@ p{
 }
 ul{
 	list-style-type:circle;
-	margin: 1em;
+	margin: 0px !important;
 }
 ol{
 	list-style-type:decimal;
@@ -82,11 +79,11 @@ em{
 
 
 .ui-dialog-title{
-	color: #3299BB !important;
+	color: #fb8c00 !important;
 	font-strength: 200;
 }
 .enroll{
-    background: #3299BB; /* For browsers that do not support gradients */	
+    background: #fb8c00; /* For browsers that do not support gradients */	
     padding: 1em;
     text-align: center;
     font-size: 1em;
@@ -102,8 +99,8 @@ em{
  .containerHeader{
  	text-align: left;
  	font-size: 2em;
-	background-color: #3299BB;
- 	color: #ffffff;
+	background-color: #fb8c00;
+ 	color: #795548;
  	padding: 1em 0 1em 0.25em;
 	display: none;
  }
@@ -139,7 +136,7 @@ em{
 	    background-color: #ffffff;
 	    border: 0px;
 	    color: #333;
-	    box-shadow: 0 0 16px #3299BB;
+	    box-shadow: 0 0 16px #fb8c00;
 	} .ie7 .subContainer {
 	    height: 200px;
 	} .subContainer .wrapper {
@@ -353,16 +350,16 @@ width: 50%;
 }
 
 .appHeader{
-	background-color: #3299BB;
+	background-color: #ffffff;
 	text-shadow: none;
-	color: #ffffff;
+	color: #1c397c;
 	position: fixed;
 	left: 0px;
 	top: 0px;
 	width: 100%;
 	display: block;
 	z-index: 1000;
-	height: 45px;
+	border-top: #fbc02d solid 5px;
 }
 .appBody{
 	overflow-y: scroll;
@@ -376,9 +373,8 @@ width: 50%;
 	border: 0px;
 	text-shadow: none;
 	float: left;
-	color: #ffffff;
-	font-size: 1.5em;
-	font-weight: 900;
+	color: #1c397c;
+	font-size: 1.25em;
 	margin: 0px;
 }
 .txtreaction, #updateLocation, #updateDetailsText, #updateName{
@@ -387,14 +383,14 @@ width: 50%;
 	border: 0px;
 	text-shadow: none;
 	float: left;
-	color: #3299BB !important;
+	color: #1c397c !important;
 }
 #containerBackButton, #showMainPageButton, .loginMenuBar, .registerMenuBar, .socialMenuBar, #palpostr-url-sec { 
 	background: rgba(0,0,0,0); 
 	border: 0px;
 	text-shadow: none;
 	float: left;
-	color: #ffffff;
+	color: #1c397c;
 	font-size: 1.5em;
 	font-weight: normal;
 	margin: 0px;
@@ -421,14 +417,15 @@ width: 50%;
 }
 #notificationButton{
 	padding-left: 5px;
-	padding-right: 10px;	
+	padding-right: 10px;
+	display: none;	
 }
 #showRightPanel, #refreshPanel, #newMessageButton, #notificationButton{
 	float: right; 
 	background-color: rgba(0,0,0,0); 
 	border: 0px;
 	text-shadow: none;	
-	color: #ffffff !important;
+	color: #1c397c !important;
 	margin: 0px;	
 	max-height: 1000px;
 	overflow: hidden;
@@ -436,9 +433,10 @@ width: 50%;
 #rightPanel{
 	color: #000000;
 	text-shadow: none;	
-	background-color: rgba(255,255,255,0.9);  
+	background-color: rgba(255,255,255, 1);  
 	margin: 0px;
 	width: 80%;
+	border-top: #fbc02d solid 5px;
 }
 #leftPanel{
 	text-shadow: none;	
@@ -446,6 +444,9 @@ width: 50%;
 	margin: 0px;
 	width: 95%;
 	font-size: 1em;
+}
+#menu-toggle{
+	display: none;
 }
 .storyItem .fa-picture-o, .storyItem .fa-globe{
  color: #333 !important;
@@ -504,7 +505,7 @@ width: 50%;
 	margin: 0px; 
 	border: 0px solid; 
 	font-size: 2em;
-	color: #3299BB !important;
+	color: #fb8c00 !important;
 	font-weight: 500;
  }
  #storyItemTitle-small{ 
@@ -512,7 +513,7 @@ width: 50%;
 	margin: 0px; 
 	border: 0px solid; 
 	font-size: 1.5em;
-	color: #3299BB !important;
+	color: #fb8c00 !important;
 	font-weight: 500;
  }
   #storyItemTitle{
@@ -680,11 +681,11 @@ width: 50%;
  )
  .facebook{
  	background-color: #3b5998;
-	color: #ffffff;
+	color: #795548;
 	border: 0px;
  }
 #containerDiv{
-	margin-top: 45px;
+	margin-top: 60px;
 }
  #loginSlideScrollBar, #termsAndConditions, #inviteFriendsDiv{
    	margin-top: 45px;
@@ -701,7 +702,7 @@ width: 50%;
  }
 
  .activeButton{
- 	border-bottom: 2px solid #3299BB !important;
+ 	border-bottom: 2px solid #fb8c00 !important;
  }
 
  #inviteFriendsDiv{
@@ -725,3 +726,260 @@ width: 50%;
 .bar.bar-nav {
   position: static;
 }
+
+		/* Custom Link Color */
+		.menu-toggle:hover,
+		.menu-toggle:focus,
+		a,
+		.main-navigation a:hover,
+		.main-navigation a:focus,
+		.dropdown-toggle:hover,
+		.dropdown-toggle:focus,
+		.social-navigation a:hover:before,
+		.social-navigation a:focus:before,
+		.post-navigation a:hover .post-title,
+		.post-navigation a:focus .post-title,
+		.tagcloud a:hover,
+		.tagcloud a:focus,
+		.site-branding .site-title a:hover,
+		.site-branding .site-title a:focus,
+		.entry-title a:hover,
+		.entry-title a:focus,
+		.entry-footer a:hover,
+		.entry-footer a:focus,
+		.comment-metadata a:hover,
+		.comment-metadata a:focus,
+		.pingback .comment-edit-link:hover,
+		.pingback .comment-edit-link:focus,
+		.comment-reply-link,
+		.comment-reply-link:hover,
+		.comment-reply-link:focus,
+		.required,
+		.site-info a:hover,
+		.site-info a:focus {
+			color: #c60056;
+		}
+
+		mark,
+		ins,
+		button:hover,
+		button:focus,
+		input[type="button"]:hover,
+		input[type="button"]:focus,
+		input[type="reset"]:hover,
+		input[type="reset"]:focus,
+		input[type="submit"]:hover,
+		input[type="submit"]:focus,
+		.pagination .prev:hover,
+		.pagination .prev:focus,
+		.pagination .next:hover,
+		.pagination .next:focus,
+		.widget_calendar tbody a,
+		.page-links a:hover,
+		.page-links a:focus {
+			background-color: #c60056;
+		}
+
+		input[type="date"]:focus,
+		input[type="time"]:focus,
+		input[type="datetime-local"]:focus,
+		input[type="week"]:focus,
+		input[type="month"]:focus,
+		input[type="text"]:focus,
+		input[type="email"]:focus,
+		input[type="url"]:focus,
+		input[type="password"]:focus,
+		input[type="search"]:focus,
+		input[type="tel"]:focus,
+		input[type="number"]:focus,
+		textarea:focus,
+		.tagcloud a:hover,
+		.tagcloud a:focus,
+		.menu-toggle:hover,
+		.menu-toggle:focus {
+			border-color: #c60056;
+		}
+
+		@media screen and (min-width: 56.875em) {
+			.main-navigation li:hover > a,
+			.main-navigation li.focus > a {
+				color: #c60056;
+			}
+		}
+	
+
+		/* Custom Main Text Color */
+		body,
+		blockquote cite,
+		blockquote small,
+		.main-navigation a,
+		.menu-toggle,
+		.dropdown-toggle,
+		.social-navigation a,
+		.post-navigation a,
+		.pagination a:hover,
+		.pagination a:focus,
+		.widget-title a,
+		.site-branding .site-title a,
+		.entry-title a,
+		.page-links > .page-links-title,
+		.comment-author,
+		.comment-reply-title small a:hover,
+		.comment-reply-title small a:focus {
+			color: #1c397c
+		}
+
+		blockquote,
+		.menu-toggle.toggled-on,
+		.menu-toggle.toggled-on:hover,
+		.menu-toggle.toggled-on:focus,
+		.post-navigation,
+		.post-navigation div + div,
+		.pagination,
+		.widget,
+		.page-header,
+		.page-links a,
+		.comments-title,
+		.comment-reply-title {
+			border-color: #1c397c;
+		}
+
+		button,
+		button[disabled]:hover,
+		button[disabled]:focus,
+		input[type="button"],
+		input[type="button"][disabled]:hover,
+		input[type="button"][disabled]:focus,
+		input[type="reset"],
+		input[type="reset"][disabled]:hover,
+		input[type="reset"][disabled]:focus,
+		input[type="submit"],
+		input[type="submit"][disabled]:hover,
+		input[type="submit"][disabled]:focus,
+		.menu-toggle.toggled-on,
+		.menu-toggle.toggled-on:hover,
+		.menu-toggle.toggled-on:focus,
+		.pagination:before,
+		.pagination:after,
+		.pagination .prev,
+		.pagination .next,
+		.page-links a {
+			background-color: #1c397c;
+		}
+
+		/* Border Color */
+		fieldset,
+		pre,
+		abbr,
+		acronym,
+		table,
+		th,
+		td,
+		input[type="date"],
+		input[type="time"],
+		input[type="datetime-local"],
+		input[type="week"],
+		input[type="month"],
+		input[type="text"],
+		input[type="email"],
+		input[type="url"],
+		input[type="password"],
+		input[type="search"],
+		input[type="tel"],
+		input[type="number"],
+		textarea,
+		.main-navigation li,
+		.main-navigation .primary-menu,
+		.menu-toggle,
+		.dropdown-toggle:after,
+		.social-navigation a,
+		.image-navigation,
+		.comment-navigation,
+		.tagcloud a,
+		.entry-content,
+		.entry-summary,
+		.page-links a,
+		.page-links > span,
+		.comment-list article,
+		.comment-list .pingback,
+		.comment-list .trackback,
+		.comment-reply-link,
+		.no-comments,
+		.widecolumn .mu_register .mu_alert {
+			border-color: #1c397c; /* Fallback for IE7 and IE8 */
+			border-color: rgba( 28, 57, 124, 0.2);
+		}
+
+		hr,
+		code {
+			background-color: #1c397c; /* Fallback for IE7 and IE8 */
+			background-color: rgba( 28, 57, 124, 0.2);
+		}
+
+		@media screen and (min-width: 56.875em) {
+			.main-navigation ul ul,
+			.main-navigation ul ul li {
+				border-color: rgba( 28, 57, 124, 0.2);
+			}
+
+			.main-navigation ul ul:before {
+				border-top-color: rgba( 28, 57, 124, 0.2);
+				border-bottom-color: rgba( 28, 57, 124, 0.2);
+			}
+		}
+	
+
+		/* Custom Secondary Text Color */
+
+		/**
+		 * IE8 and earlier will drop any block with CSS3 selectors.
+		 * Do not combine these styles with the next block.
+		 */
+		body:not(.search-results) .entry-summary {
+			color: #750048;
+		}
+
+		blockquote,
+		.post-password-form label,
+		a:hover,
+		a:focus,
+		a:active,
+		.post-navigation .meta-nav,
+		.image-navigation,
+		.comment-navigation,
+		.widget_recent_entries .post-date,
+		.widget_rss .rss-date,
+		.widget_rss cite,
+		.site-description,
+		.author-bio,
+		.entry-footer,
+		.entry-footer a,
+		.sticky-post,
+		.taxonomy-description,
+		.entry-caption,
+		.comment-metadata,
+		.pingback .edit-link,
+		.comment-metadata a,
+		.pingback .comment-edit-link,
+		.comment-form label,
+		.comment-notes,
+		.comment-awaiting-moderation,
+		.logged-in-as,
+		.form-allowed-tags,
+		.site-info,
+		.site-info a,
+		.wp-caption .wp-caption-text,
+		.gallery-caption,
+		.widecolumn label,
+		.widecolumn .mu_register label {
+			color: #750048;
+		}
+
+		.widget_calendar tbody a:hover,
+		.widget_calendar tbody a:focus {
+			background-color: #750048;
+		}
+		
+		.entry-title{
+			display: none;
+		}

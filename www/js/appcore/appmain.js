@@ -26,7 +26,7 @@ Sandbox = Class.extend({
 Core = function(_$) {
 	var moduleData = {},
 		userData = {username: 'guest', authorization: null, authorizationType: null, userDetails: null},
-		cache = {}, 
+		cache = {},  menuItemDownloadTrigger = null, menuItemDownloadProgress = _$('#storiesDiv').find('.determinate'), 
 		deviceAccounts = null
 		baseHost = "",
 		_dom = {
@@ -315,7 +315,15 @@ Core = function(_$) {
 			},
 			htmlDecode: function(data){
 				return Encoder.htmlDecode(data);
-			}
+			},
+			defaultGet: function(url, successMethod, failureMethod){				
+				_$.ajax({
+					url: url,
+					type: 'GET',
+					success: successMethod,
+					failure: failureMethod
+				});				
+			}			
 		},
 		_json = {
 			each: _$.each,
