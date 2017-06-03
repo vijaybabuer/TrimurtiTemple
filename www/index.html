@@ -89,7 +89,6 @@
 				</div>
 				<div class="containers" id="containerDiv">
 					<div class="container" id="mainContainer">
-						<p id="guestWelcome">You are missing out! Login or Register today to activitate tons of exciting features on the App.</p>
 						<a class="ui-btn ui-btn-inline noshadow nd lt" id="refreshPanel" disabled>
 								<i class="fa fa-refresh"></i> Show Latest Stories
 						</a>
@@ -152,10 +151,10 @@
 						<div id="storiesDiv" style="text-align: left;">
 						</div>
 						<div id="storiesDivTrailer">
-							<button class="ui-btn cd stdf al bw noeffect nd" id="showMore" style="text-align: center;"><i class="fa fa-chevron-down"></i>&nbsp;Show More Messages</button>
+							<!-- <button class="ui-btn cd stdf al bw noeffect nd" id="showMore" style="text-align: center;"><i class="fa fa-chevron-down"></i>&nbsp;Show More Messages</button> -->
 						</div>
 					</div>
-					<div id="profileContainer">
+					<div class="nd" id="profileContainer">
 						<p>You can receive realtime notifications by registering with your Facebook or Gmail Accounts.</p>
 						<p>To protect your identity, you need to login or register to use this feature. </p>
 						<a href="#loginRegisterPage" onClick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>
@@ -167,17 +166,15 @@
 				</div>
 
 			<div class="al b" data-position="right" data-position-fixed="true" data-role="panel" data-display="overlay" id="rightPanel">
+				<div id="documentPageList">Please wait while the section is loading..</div>
 				<div class="menu-about-trimuti-temple-container">
 				<ul id="menu-about-trimuti-temple" class="primary-menu">
-				<li id="menu-item-949" class="p bnc menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-949"><a href="http://www.trimurtitemple.org"><i class="fa fa-home"></i> Home</a></li>
-				<li id="menu-item-1011" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-1011"><a href="https://www.trimurtitemple.org/online-payments-services/"><i class="fa fa-heart"></i> Online Payments &amp; Services</a></li>
-				<li id="menu-item-996" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-996"><a href="https://www.trimurtitemple.org/blog-news/"><i class="fa fa-rss"></i> Temple Blog &amp; News</a></li>
-				<li id="menu-item-939" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-939"><a href="https://www.trimurtitemple.org/about-us/"><i class="fa fa-info-circle"></i> About Us</a></li>
-				<li id="menu-item-940" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-940"><a href="https://www.trimurtitemple.org/contact-us/"><i class="fa fa-user"></i> Contact Us</a></li>
-				<li id="menu-item-941" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-941"><a href="https://www.trimurtitemple.org/temple-directions/"><i class="fa fa-map-marker"></i> Directions</a></li>
-				<li id="menu-item-942" class="p bnc  menu-item menu-item-type-post_type menu-item-object-page menu-item-942"><a href="https://www.trimurtitemple.org/policies/"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
+					<li id="menu-item-1011" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-1011"><a href="https://www.trimurtitemple.org/online-payments-services/"><i class="fa fa-heart"></i> Online Payments &amp; Services</a></li>
+					<li id="menu-item-941" class="p bnc menu-item menu-item-type-post_type menu-item-object-page menu-item-941"><a href="https://www.trimurtitemple.org/temple-directions/"><i class="fa fa-map-marker"></i> Directions</a></li>
+					<li id="menu-item-942" class="p bnc  menu-item menu-item-type-post_type menu-item-object-page menu-item-942"><a href="https://www.trimurtitemple.org/policies/"><i class="fa fa-calendar-check-o"></i> Timings</a></li>
 				</ul>
 				</div>
+
 			</div><!-- /panel -->
         </div>
 		 <div data-role="page" class="row login" id="loginRegisterPage" data-add-back-btn="true">
@@ -228,7 +225,7 @@
 						<div class="col s12" id="socialDiv">
 							<span id="message"></span>
 							<div id="socialDivTNC" style="padding-top: 1em;">
-								<h3>Please review below information </h3><br>
+								<span>Please review below information </span><br>
 									<p>Your Name, Email ID, Profile Picture from your Social Networking Provider will be shared with PalPostr.COM</p><br>
 									<a class="ui-btn cd" id="socialLoginStart">Agree, Continue</a>
 								</ul>
@@ -473,12 +470,131 @@ Ex: john@example.com;sam@example.com</script>
 	<span class="sr-only bigScreenItem">Loading...</span>
 </div>
 </script>
+<script type="text/template" id="jstemplate-preloader">
+<div style="margin-top: 50px; margin-left: 45%;" class="preloader-wrapper small active">
+    <div class="spinner-layer spinner-red-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+</div>
+</script>
 <script type="text/template" id="jstemplate-unAuthorizedAccessDialog">
 				<div id="unAuthorizedAccessDialog" class="container subContainer">
 					<p>To protect your identity, you need to login or register to use this feature. </p>
 					<a href="#loginRegisterPage" onclick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>
 				</div>
 </script>
+<script type="text/x-tmpl" id="template-storyTemplate-appSpecific">
+{% if (!o.storyAuthorContact.userIsBlockedByLoggedInUser) { %}
+{% if (o.storyPictures || o.story || o.storyTitle) { %}
+<div class="yui3-g-r storyItem s12 bnc {%=o.documentItem.documentType%}STORY" style="clear:both; margin: 1px; padding: 0px; overflow: hidden;" id="storyItem-{%=o.storyDocumentPageId%}">
+	<div class="yui3-u storyItemHeader" style="width: 100%;">
+		<div  style="height: 100%;  padding-left: 5px; text-align: left;">
+				{% if (o.storyType != 'COVERPAGE' && o.storyTitle) { %}
+					<a class="roberto" data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text">
+					{%=o.storyTitle%}
+					</a>
+					<br>
+				{% } %}
+				{% if (o.storyType == 'COVERPAGE' && o.storyDocumentTitle) { %}
+					<a class="roberto" data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text">
+					{%=o.storyDocumentTitle%}
+					</a>
+					<br>
+				{% } %}
+		</div>
+	</div>
+
+	<div class="yui3-u" style="font-size: 1em; width: 100%; padding-left: 5px; float: left; text-align: left;">
+					{% if (o.storyPictures && o.storyPictures.length > 0) { %}
+						<div class="yui3-g" style="text-align: center;  margin: 0px; padding: 0px;" id="album-{%=o.storyPictureAlbumId%}-{%=o.storyPictureAlbumTypeCd%}">
+							<div class="yui3-u albumpictures storyItemMedia" title="" style="position: relative; border: 0px; clear:both; text-align: center; width: 100%; max-width: 500px;">
+									{% for (var i=0, file; file=o.storyPictures[i]; i++) { %}
+									<div class="" style="">
+									{% if (!o.userLoggedIn) { %}
+									<a data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text">
+										{% if (file.mediaIsLandscape) { %}
+										<div class="ba yui3-u-1" style="background: url(http://www.palpostr.com/publicphoto/{%=o.storyDocumentId%}/{%=o.storyDocumentPageId%}/{%=o.storyPictureAlbumId%}/{%=file.documentPageId%}?mediaType=jpeg); height: 250px; width:  100%; background-size: contain; background-position: center center; background-repeat: no-repeat;">
+
+										</div>
+										{% } %}
+										{% if (file.mediaIsPortrait) { %}
+										<div class="ba yui3-u-1" style="background: url(http://www.palpostr.com/publicphoto/{%=o.storyDocumentId%}/{%=o.storyDocumentPageId%}/{%=o.storyPictureAlbumId%}/{%=file.documentPageId%}?mediaType=jpeg); height: {%=file.mediaHeight%}px; max-height: 800px; width:  100%; background-size: contain; background-position: center center; background-repeat: no-repeat;">
+
+										</div>
+										{% } %}
+									</a>
+									{% } %}
+									{% if (o.userLoggedIn) { %}
+									{% if (o.storyType == 'PHOTO') { %}
+										<a data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text">
+									{% } %}
+									{% if (o.storyType != 'PHOTO') { %}
+										<a data-snippet-url="{%=o.storyPictureAlbumTypeCd%}/snippet/page/{%=o.storyPictureAlbumId%}?mediaType=text&viewAllStories=true">
+									{% } %}
+										{% if (file.mediaIsLandscape) { %}
+										<div class="ba yui3-u-1" style="background: url(http://www.palpostr.com/photoV2/{%=file.documentPageId%}?mediaType=${picRequestType}); height: 250px; width:  100%; background-size: contain; background-position: center center; background-repeat: no-repeat;">
+
+										</div>
+										{% } %}
+										{% if (file.mediaIsPortrait) { %}
+										<div class="ba yui3-u-1" style="background: url(http://www.palpostr.com/${radeyaV2PhotoUrl}{%=file.documentPageId%}?mediaType=${picRequestType}); height: {%=file.mediaHeight%}px; max-height: 800px; width:  100%; background-size: auto auto; background-position: center center; background-repeat: no-repeat;">
+
+										</div>
+										{% } %}
+									</a>
+									{% } %}
+
+									</div>
+								{% } %}
+								{% if (o.storyItemPictureCount && o.storyItemPictureCount > 1) { %}
+								<div title="Add more pictures to this album" style="width: 100%;">
+									<a class="ui-btn albumPicDecriptions" data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text" href="http://www.palpostr.com/alb/{%=o.storyPictures[0].documentPageId%}" id="button-{%=o.storyPictureAlbumId%}-{%=o.storyPictureAlbumTypeCd%}">
+										<i class="fa fa-camera"></i>&nbsp;&nbsp;({%=o.storyItemPictureCount%})
+									</a>
+									<a class="ui-btn albumPicList" data-snippet-url="{%=o.storyPictureAlbumType%}/snippet/page/{%=o.storyPictureAlbumId%}?mediaType=text&viewAllStories=true" href="http://www.palpostr.com/alb/{%=o.storyPictures[0].documentPageId%}">
+										<i class="fa fa-th-list" aria-hidden="true"></i>
+									</a>
+								</div>
+								{% } %}
+							</div>
+						</div>
+					{% } %}
+					{% if (o.story) { %}
+						<span id="story" class="roberto">{%=o.story%}</span>
+						{% if (o.hasMoreContent) { %}
+						<a data-snippet-url="{%=o.storyDocumentType%}/snippet/Story/{%=o.storyDocumentPageId%}-true?mediaType=text"  class="p cd">
+							Continue Reading..
+						</a>
+						{% } %}
+					{% } %}
+	</div>
+</div>
+{% } %}
+{% } %}
+</script>
+<script type="text/x-tmpl" id="template-documentItemList">
+{% for (var i=0, documentItem; documentItem=o.documentListResponse.documentItemList[i]; i++) { %}
+
+{% if (documentItem.documentCoverMediaItem) { %}
+<a style="text-decoration: none; text-alg; background-image: url('http://www.palpostr.com/tnphoto1.pvt/{%=documentItem.documentCoverMediaItem.documentPageId%}?mediaType=jpeg');" data-snippet-url="{%=documentItem.documentType%}/snippet/page/{%=documentItem.documentId%}?viewAllStories=false&mediaType=text" class="ui-btn snippetAnchorWithPic asper {% if (documentItem.pageCategories && documentItem.pageCategories.length > 0) { %}{% for (var j=0, category; category=documentItem.pageCategories[j]; j++) { %}{%=category%} {% } %} {% } %}">
+{% } %}
+{% if (!documentItem.documentCoverMediaItem) { %}
+<a style="text-decoration: none; text-alg;" data-snippet-url="{%=documentItem.documentType%}/snippet/page/{%=documentItem.documentId%}?viewAllStories=false&mediaType=text" class="ui-btn asper {% if (documentItem.pageCategories && documentItem.pageCategories.length > 0) { %}{% for (var j=0, category; category=documentItem.pageCategories[j]; j++) { %}{%=category%}{% } %} {% } %}">
+{% } %}
+	<span>{%=documentItem.documentTitle%}</span><br>
+	<span>
+		{% if (documentItem.pageCategories && documentItem.pageCategories.length > 0) { %}{% for (var j=0, category; category=documentItem.pageCategories[j]; j++) { %}{%=category%}&nbsp;{% } %} {% } %}
+	</span>
+</a>
+{% } %}
+</script>
+
 <script type="text/unittest">
 $(document).ready(function(){
 

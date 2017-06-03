@@ -74,10 +74,24 @@ var pageViewController = function(sb, input){
 
 	   }
 	   
+	function _loadHomePage(homePageResponse){
+		 sb.dom.find('#storiesDiv').html(homePageResponse);
+		 sb.dom.find('#storiesDiv').find('.container').removeClass('container');
+		 sb.dom.find('#storiesDiv').find('.subContainer').removeClass('subContainer');
+	}
 	function processPageInformation(snippetResponse){
 		try{
 		   var pageListHtml = tmpl("template-documentItemList", snippetResponse);
+		   var homePageId = null;
 		   sb.dom.find("#rightPanel").find("#documentPageList").html(sb.utilities.htmlDecode(pageListHtml));
+		   for(var i=0; i < snippetResponse.documentListResponse.documentItemList.length; i++){	
+		   		for(var j=0; j < snippetResponse.documentListResponse.documentItemList[i].pageCategories.length; j++){
+					if(snippetResponse.documentListResponse.documentItemList[i].pageCategories[j] == 'Home'){
+						homePageId = snippetResponse.documentListResponse.documentItemList[i].documentId;
+					}
+				}
+		   }
+		   sb.utilities.get('Magazine/snippet/page/'+homePageId+'?mediaType=text&viewAllStories=true', null, _loadHomePage);
 		   if(sb.utilities.isUserLoggedIn()){
 			   var showWriteToButton = false;
 			   var firstDocToPost = true;
@@ -274,11 +288,52 @@ var pageViewController = function(sb, input){
 	
 
 	function _loadMainPage(snippetResponse){
-		try{
-		sb.dom.find('#storiesDiv').html(snippetResponse);
-		}catch(err){
-			console.log('Error while loading Main Page' + err);	
-		}
+		   if(snippetResponse != null && snippetResponse.antahRequestStatus == "SUCCESS"){	
+		   		sb.dom.find('.appBody').removeClass('yellow');
+		   		sb.dom.find('.appBody').removeClass('darken-1');				
+			   updateFooterMessage("");
+			   sb.dom.find('#containerDiv').find("#mainContainer").find("#storiesDiv").html("");
+			   /*
+			   if(snippetResponse.streamResponse && snippetResponse.streamResponse.storyItemList && snippetResponse.streamResponse.storyItemList.length > 0){
+					for(var i =0; i<snippetResponse.streamResponse.storyItemList.length;i++){
+						try{
+						addStoryItemToView(snippetResponse.streamResponse.storyItemList[i]);
+						
+						}catch(e){
+							updateFooterMessage('problem loading story ' + snippetResponse.streamResponse.storyItemList[i].storyDocumentPageId + " " + e);
+						}							
+					} 
+					if(storyItemControllerPublish){
+						storyItemControllerPublish = false;
+					Core.publish("startStoryItemController", {appname: appname, lastUpdatedStreamDate: snippetResponse.streamResponse.storyItemList[snippetResponse.streamResponse.storyItemList.length-1].storyTimeStampStringFormat, sseDetails: snippetResponse.sseHostDetails});
+					}
+				}else{
+					updateFooterMessage("No Stories Received");
+				}*/
+			   if(snippetResponse.documentListResponse && snippetResponse.documentListResponse.documentItemList && snippetResponse.documentListResponse.documentItemList.length > 0){
+						try{
+						processPageInformation(snippetResponse);
+						
+						}catch(e){
+							updateFooterMessage('problem loading page ' + snippetResponse.streamResponse.storyItemList[i].storyDocumentPageId + " " + e);
+						}
+				}else{
+					updateFooterMessage("No Pages Received");
+				}
+			   sb.dom.find("#rightPanel").find("#documentPageList").find('a').each(_setAnchorClickEvent);			
+			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().removeClass('subContainer');
+   			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().removeClass('container');
+			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().find('.containerHeader').remove();
+			   sb.dom.find("#storiesDivTrailer").find("#showMore").show();
+			if(sb.dom.find('.grid').length > 0){
+				var gridList = sb.dom.find('.grid');
+				setTimeout(function(){gridList.each(_enableGrid)}, 5000);
+			}
+			sb.dom.find('.toggleFullScreen').on('click',_toggleFullScreenEvent);
+			sb.dom.find('.timeago').timeago();
+		   }else{
+			   updateFooterMessage("There was a problem loading the Page. Please try again after some time. " + snippetResponse.antahResponseMessage);
+			}
 	}
 	
 
@@ -302,8 +357,7 @@ var pageViewController = function(sb, input){
 			updateFooterMessage("Proceeding after check login status");
 			var snippetUrl = null;
 			var data = null;
-			sb.dom.find('#storiesDiv').html('<div class="progress"><div class="indeterminate" style="width: 10%"></div></div>');
-			snippetUrl = "https://www.trimurtitemple.org";
+			snippetUrl = relPathIn+"appView?mediaType=json";
 			if(sb.utilities.isUserLoggedIn()){
 				Core.publish('startUserLogo', null);				
 				var userData = sb.utilities.getUserInfo();				
@@ -312,7 +366,7 @@ var pageViewController = function(sb, input){
 			   data = {appname: appname, streamSize: streamSize};				
 			}
 			appendFooterMessage("Getting data stream");
-			sb.utilities.defaultGet(snippetUrl, _loadMainPage, _errorStartController);
+			sb.utilities.postV2(snippetUrl, data, _loadMainPage, _reloadAppPage);
 	}
 	
 	function _gameLoadStart(event){
@@ -323,8 +377,11 @@ var pageViewController = function(sb, input){
 		e.preventDefault();
 		var url = sb.dom.find(this).attr('href');
 		var gameRef = null
-		gameRef = cordova.InAppBrowser.open(url, '_self', 'location=no');
-
+		if(device.platform == 'Android'){
+			gameRef = cordova.InAppBrowser.open(url, '_self', 'location=no');
+		}else{
+			gameRef = cordova.InAppBrowser.open(url, '_system', 'location=no');
+		}
 		gameRef.addEventListener('loadstart', function(event){
 			 if (event.url.match("close")) {
 				 gameRef.close();
@@ -416,25 +473,6 @@ var pageViewController = function(sb, input){
 				alert(e);	
 		}
 	}
-	
-	function _loadMenuItemPage(snippetResponse){
-		try{
-		sb.dom.find('#storiesDiv').html(snippetResponse);
-		}catch(err){
-			console.log('Error while loading Main Page' + err);	
-		}
-	}
-	
-	function _menuItemAnchorClickEvent(e){
-		e.preventDefault();
-		var appPageUrl = sb.dom.find(this).attr('href');
-		sb.dom.find('#storiesDiv').html('<div class="progress"><div class="indeterminate" style="width: 10%"></div></div>');
-		sb.dom.find('#rightPanel').panel('close');
-		sb.utilities.defaultGet(appPageUrl, _loadMenuItemPage, _errorStartController);
-	}
-	function _setMenuItemAnchorClickEvent(){
-		sb.dom.find(this).click(_menuItemAnchorClickEvent);
-	}
 	function _startControllerV2(){
 		try{			
 			var screenHeight = sb.dom.find(window).height();
@@ -451,7 +489,6 @@ var pageViewController = function(sb, input){
 			sb.dom.find('#mainPage').page({
 				domCache: true							  
 			});
-			sb.dom.find('.menu-item').find('a').each(_setMenuItemAnchorClickEvent);
 		 $('.modal').modal({
 			  dismissible: true, // Modal can be dismissed by clicking outside of the modal
 			  opacity: .5, // Opacity of modal background
@@ -471,6 +508,7 @@ var pageViewController = function(sb, input){
 		}catch(error){
 			alert(error);	
 		}
+		
 	}
 	
 	function _refreshButtonClick(e){

@@ -345,7 +345,7 @@ var storyItemController = function(sb, input){
 				sb.dom.find("#storiesDivTrailer").find("#showMore").attr("disabled", true);
 				sb.dom.find("#storiesDivTrailer").find("#showMore").find(".fa").addClass("fa-chevron-down");
 			}
-			sb.dom.find("#storiesDivTrailer").find("#showMore").removeClass("nd");
+			//sb.dom.find("#storiesDivTrailer").find("#showMore").removeClass("nd");
 		}else{
 			appendFooterMessage("could not get stream. " + data.antahRequestStatus);
 		}

@@ -1,6 +1,7 @@
 html{
 	overflow: hidden;
 }
+
 body{
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;		
@@ -61,17 +62,11 @@ em{
 .mce-container-body {
 	background-color: #ffffff;
 }
-.appTimeStamp{
-	display: none;
-}
-.storyPhotoNav{
-	color: #ffffff !important;
-	opacity:0.5;
-	font-size: 1em !important;
-}
+
 .mce-btn button{
 	padding: 1px 5px !important;
 }
+
 .CommentsSummary, .RepliesSummary, .HighlightSummary, .ViewSummary, .ShareSummary, .WhatsAppShare{
 	font-size: 1.25em; 
 	margin-right: 1em; 

@@ -206,7 +206,9 @@ var pageViewController = function(sb, input){
 		}
 		
 	   function _snippetResponseReceived(snippetResponse){
+		   alert('responce');
 		   if(snippetResponse != null){
+			   		   alert('responce not null');
 			   try{
 			   sb.dom.find('.placeHolderContainer').remove();
 			   sb.dom.find('#containerDiv').prepend(snippetResponse);
@@ -241,6 +243,28 @@ var pageViewController = function(sb, input){
 		   sb.dom.find(this).hide();
 	   }
 
+	function _setSubPageAnchorClick(e){
+		try{		
+			var snippetUrl = sb.dom.find(this).attr('href');
+			if(snippetUrl){
+					   e.preventDefault();
+					   sb.dom.find('.container').each(_hideContainer);
+					   //sb.dom.find('#containerDiv').prepend(placeHolderContainer);		
+					   //alert(sb.dom.find('#containerDiv').scrollTop());
+					   //alert(sb.dom.find(this).scrollTo(0, 0));
+					   //window.scrollTo(0, 0);
+					   sb.utilities.defaultGet(snippetUrl,_snippetResponseReceived,_errorStartController);			
+			}
+			sb.dom.find("#rightPanel").panel("close");
+		}catch(err){
+			updateFooterMessage(err);	
+		}	
+	}
+	
+	function _setSubPageAnchorClickEvent(){
+		sb.dom.find(this).click(_setSubPageAnchorClick);
+	}
+	
 	function _anchorClickEvent(e){
 		try{			
 			var snippetUrl = sb.dom.find(this).attr('data-snippet-url');
@@ -276,8 +300,9 @@ var pageViewController = function(sb, input){
 	function _loadMainPage(snippetResponse){
 		try{
 		sb.dom.find('#storiesDiv').html(snippetResponse);
+		sb.dom.find('#storiesDiv').find('a').each(_setMenuItemAnchorClickEvent);
 		}catch(err){
-			alert('Error while loading Main Page' + err);	
+			console.log('Error while loading Main Page' + err);	
 		}
 	}
 	
@@ -302,6 +327,7 @@ var pageViewController = function(sb, input){
 			updateFooterMessage("Proceeding after check login status");
 			var snippetUrl = null;
 			var data = null;
+			sb.dom.find('#storiesDiv').html(sb.dom.find('#jstemplate-preloader').html());
 			snippetUrl = "https://www.trimurtitemple.org";
 			if(sb.utilities.isUserLoggedIn()){
 				Core.publish('startUserLogo', null);				
@@ -415,6 +441,34 @@ var pageViewController = function(sb, input){
 				alert(e);	
 		}
 	}
+	
+	function _loadMenuItemPage(snippetResponse){
+		try{
+		sb.dom.find('#storiesDiv').html(snippetResponse);
+		sb.dom.find('#storiesDiv').find('a').each(_setMenuItemAnchorClickEvent);
+		}catch(err){
+			console.log('Error while loading Main Page' + err);	
+		}
+	}
+	
+	function _menuItemAnchorClickEvent(e){
+		try{
+			e.preventDefault();
+			sb.dom.find('#storiesDiv').html(sb.dom.find('#jstemplate-preloader').html());
+			sb.dom.find('#rightPanel').panel('close');
+			var appPageUrl = sb.dom.find(this).attr('href');			
+			sb.utilities.defaultGet(appPageUrl, _loadMenuItemPage, _errorStartController);
+			sb.dom.find('.menu-about-trimuti-temple-container').find('.current-menu-item').removeClass('current-menu-item');
+			sb.dom.find(this).parent('li').addClass('current-menu-item');			
+		}catch(e){
+			console.log(e);	
+		}
+
+	}
+	
+	function _setMenuItemAnchorClickEvent(){
+		sb.dom.find(this).click(_menuItemAnchorClickEvent);
+	}
 	function _startControllerV2(){
 		try{			
 			var screenHeight = sb.dom.find(window).height();
@@ -431,6 +485,7 @@ var pageViewController = function(sb, input){
 			sb.dom.find('#mainPage').page({
 				domCache: true							  
 			});
+			sb.dom.find('.menu-item').find('a').each(_setMenuItemAnchorClickEvent);
 		 $('.modal').modal({
 			  dismissible: true, // Modal can be dismissed by clicking outside of the modal
 			  opacity: .5, // Opacity of modal background
