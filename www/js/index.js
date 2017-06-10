@@ -40,7 +40,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
-	var documentIdArray = "675849671328612809";
+	var documentIdArray = "990949713493197709";
 	
         app.receivedEvent('deviceready');
 	try{
@@ -57,7 +57,7 @@ var app = {
 	Core.register('userLogo',userLogo,{elemHandle: '#user-logo', relPath: "http://www.palpostr.com/", appname: 'TrimurtiTempleDevasthanam'});
 	
 	Core.loadUserData("http://www.palpostr.com/");
-	
+
 	Core.start('pageViewController');
 	Core.start('photoUploadController');
 	Core.start('clickReactionsController');

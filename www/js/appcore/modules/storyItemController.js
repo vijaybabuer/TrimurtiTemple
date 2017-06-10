@@ -393,7 +393,7 @@ var storyItemController = function(sb, input){
 	   function addStoryItemToView(storyItem){
 		   
 		   var storyItemHtml = tmpl("template-storyTemplate", storyItem);	   
-		   sb.dom.find(storiesDivId).append(sb.utilities.htmlDecode(storyItemHtml));
+		   sb.dom.find('#mainContainer').find(storiesDivId).append(sb.utilities.htmlDecode(storyItemHtml));
 		   Core.publish("newStoryAdded", {storyItemDivId: "#storyItem-"+storyItem.storyDocumentPageId});
 			Core.publish('contactToolTipAdded', {divId: "#storyItem-"+storyItem.storyDocumentPageId});
 	   }
