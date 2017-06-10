@@ -637,10 +637,10 @@ canvas{
 }
 
 .hilite{
-	background-size: 1.5em 1.5em;
-	background-repeat: no-repeat;
-	background-position: 5px center;
-	padding-left: 2em;
+	background-size: 1.5em 1.5em !important;
+	background-repeat: no-repeat !important;
+	background-position: 5px center !important;
+	padding-left: 2em !important;
 }
 
 li.PBRTRMK{

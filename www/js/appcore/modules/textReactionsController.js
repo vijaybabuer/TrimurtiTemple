@@ -139,7 +139,7 @@ var textReactionsController = function(sb, input){
 		try{		
 		if(pageReactionDetail.txnStatus == "SUCCESS"){
 			try{
-			var allTextRactionsDiv = sb.dom.find("#storiesDiv").find("#TxtReactionList-"+pageReactionDetail.documentPageId);	
+			var allTextRactionsDiv = sb.dom.find('#mainContainer').find("#storiesDiv").find("#TxtReactionList-"+pageReactionDetail.documentPageId);	
 			var reactionsDiv=allTextRactionsDiv.find("#"+pageReactionDetail.pageReactionTitle+"Div-"+pageReactionDetail.documentPageId);
 			var reactionsDivMessageArea=reactionsDiv.find(".TextReactionList-message");
 			var noReactionsMessage = sb.dom.find("#jstemplate-No"+pageReactionDetail.pageReactionTitle+"Label").html();
@@ -154,7 +154,7 @@ var textReactionsController = function(sb, input){
 				_updateReactionListForDiv(allTextRactionsDiv, reactionsDiv, reactionsDivMessageArea, noReactionsMessage, reactionsListArea, pageReactionDetail, loadFlag);
 			}
 			}catch(e){
-				alert('1 ' + e);	
+				alert('1 ' + e);				
 			}
 		}else{
 			Core.publish("displayMessage",{message: sb.dom.find("#jstemplate-ErrorMessage").html(), messageType: "failure"});

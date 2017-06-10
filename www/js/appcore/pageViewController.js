@@ -75,9 +75,10 @@ var pageViewController = function(sb, input){
 	   }
 	   
 	function _loadHomePage(homePageResponse){
-		 sb.dom.find('#storiesDiv').html(homePageResponse);
-		 sb.dom.find('#storiesDiv').find('.container').removeClass('container');
-		 sb.dom.find('#storiesDiv').find('.subContainer').removeClass('subContainer');
+		 sb.dom.find('#homePageContainer').html(homePageResponse);
+		 sb.dom.find('#homePageContainer').find('.container').removeClass('container');
+		 sb.dom.find('#homePageContainer').find('.subContainer').removeClass('subContainer');
+		 sb.dom.find('#homePageContainer').find('.storyItemFooter').hide();
 	}
 	function processPageInformation(snippetResponse){
 		try{
@@ -293,7 +294,7 @@ var pageViewController = function(sb, input){
 		   		sb.dom.find('.appBody').removeClass('darken-1');				
 			   updateFooterMessage("");
 			   sb.dom.find('#containerDiv').find("#mainContainer").find("#storiesDiv").html("");
-			   /*
+			   
 			   if(snippetResponse.streamResponse && snippetResponse.streamResponse.storyItemList && snippetResponse.streamResponse.storyItemList.length > 0){
 					for(var i =0; i<snippetResponse.streamResponse.storyItemList.length;i++){
 						try{
@@ -309,7 +310,7 @@ var pageViewController = function(sb, input){
 					}
 				}else{
 					updateFooterMessage("No Stories Received");
-				}*/
+				}
 			   if(snippetResponse.documentListResponse && snippetResponse.documentListResponse.documentItemList && snippetResponse.documentListResponse.documentItemList.length > 0){
 						try{
 						processPageInformation(snippetResponse);
@@ -320,7 +321,23 @@ var pageViewController = function(sb, input){
 				}else{
 					updateFooterMessage("No Pages Received");
 				}
-			   sb.dom.find("#rightPanel").find("#documentPageList").find('a').each(_setAnchorClickEvent);			
+			   if(snippetResponse.streamResponse && snippetResponse.streamResponse.appMiscHtmlSnippetList && snippetResponse.streamResponse.appMiscHtmlSnippetList.length > 0){
+						try{
+							var miscListHtml = "";
+							for(var miscHtmlIndex=0; miscHtmlIndex < snippetResponse.streamResponse.appMiscHtmlSnippetList.length; miscHtmlIndex++){
+								miscListHtml = miscListHtml + snippetResponse.streamResponse.appMiscHtmlSnippetList[miscHtmlIndex];
+							}
+							sb.dom.find('#containerDiv').find('#links').html(miscListHtml);
+						}catch(e){
+							updateFooterMessage('problem loading page ' + snippetResponse.streamResponse.storyItemList[i].storyDocumentPageId + " " + e);
+						}
+				}else{
+					updateFooterMessage("No Misc Html Received..");
+				}				
+			   sb.dom.find("#rightPanel").find("#documentPageList").find('a').each(_setAnchorClickEvent);	
+   			   sb.dom.find("#rightPanel").find("#documentPageList").find('.Home').hide();
+   			   sb.dom.find("#rightPanel").find("#documentPageList").find('.Messages').hide();
+
 			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().removeClass('subContainer');
    			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().removeClass('container');
 			   sb.dom.find('#containerDiv').find('#mainContainer').find('div').first().find('.containerHeader').remove();
@@ -351,7 +368,7 @@ var pageViewController = function(sb, input){
 	function _loadAppTemplates(){
 		sb.dom.find('body').append(sb.dom.find(this));
 	}
-	
+
 	function _triggerMainPageRequest(){
 	
 			updateFooterMessage("Proceeding after check login status");
@@ -361,9 +378,9 @@ var pageViewController = function(sb, input){
 			if(sb.utilities.isUserLoggedIn()){
 				Core.publish('startUserLogo', null);				
 				var userData = sb.utilities.getUserInfo();				
-				data = {username: userData.username, appname: appname, streamSize: streamSize};
+				data = {username: userData.username, appname: appname, streamSize: streamSize, documentIdList: input.documentIdList};
 			}else{
-			   data = {appname: appname, streamSize: streamSize};				
+			   data = {appname: appname, streamSize: streamSize, documentIdList: input.documentIdList};
 			}
 			appendFooterMessage("Getting data stream");
 			sb.utilities.postV2(snippetUrl, data, _loadMainPage, _reloadAppPage);
@@ -719,7 +736,7 @@ var pageViewController = function(sb, input){
 	
 	function _setEffects(){
 		sb.dom.find('.ui-btn').addClass("waves-effect");	
-		sb.dom.find('#containerDiv').find('ul.tabs').tabs('select_tab', 'mainContainer');
+		sb.dom.find('#containerDiv').find('ul.tabs').tabs('select_tab', 'homePageContainer');
         try{
 			StatusBar.show();
 			StatusBar.overlaysWebView(false);

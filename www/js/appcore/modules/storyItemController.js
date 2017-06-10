@@ -400,7 +400,21 @@ var storyItemController = function(sb, input){
 	   
 	   function prependStoryItemToView(storyItem){
 		   var storyItemHtml = tmpl(storyJSTemplateName, storyItem);	   
-		   sb.dom.find(storiesDivId).prepend(sb.utilities.htmlDecode(storyItemHtml));
+		   if(storyItem.documentItem.pageCategories){
+			   for(var i=0; i<storyItem.documentItem.pageCategories.length; i++){
+					if(storyItem.documentItem.pageCategories[i] == 'Home'){
+					   sb.dom.find('#homePageContainer').find(storiesDivId).prepend(sb.utilities.htmlDecode(storyItemHtml));
+					   sb.dom.find('#homePageContainer').find(storiesDivId).find('.storyItemFooter').hide();									
+					}else if(storyItem.documentItem.pageCategories[i] == 'Messages'){
+						 sb.dom.find('#mainContainer').find(storiesDivId).prepend(sb.utilities.htmlDecode(storyItemHtml));   						
+					}else{
+						 sb.dom.find('#mainContainer').find(storiesDivId).prepend(sb.utilities.htmlDecode(storyItemHtml));   						
+					}
+			   }
+		   }else{
+				sb.dom.find('#mainContainer').find(storiesDivId).prepend(sb.utilities.htmlDecode(storyItemHtml)); 
+		   }
+		   
 		   Core.publish("newStoryAdded", {storyItemDivId: "#storyItem-"+storyItem.storyDocumentPageId});
 			Core.publish('contactToolTipAdded', {divId: "#storyItem-"+storyItem.storyDocumentPageId});
 	   }
@@ -426,10 +440,10 @@ var storyItemController = function(sb, input){
 					if(sb.utilities.isUserLoggedIn()){
 						var userData = sb.utilities.getUserInfo();				
 						snippetUrl = relPathIn+"appView?mediaType=json";
-						data = {username: userData.username, appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE"};
+						data = {username: userData.username, appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE", documentIdList: input.documentIdList};
 						sb.utilities.postV2(snippetUrl, data, _showStories);
 					}else{
-		    			sb.utilities.postV2(relPathIn+'appView?mediaType=json', {appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE"}, _showStories);
+		    			sb.utilities.postV2(relPathIn+'appView?mediaType=json', {appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE", documentIdList: input.documentIdList}, _showStories);
 					}
 	   }
 	   
@@ -525,10 +539,10 @@ var storyItemController = function(sb, input){
 					if(sb.utilities.isUserLoggedIn()){
 						var userData = sb.utilities.getUserInfo();				
 						snippetUrl = relPathIn+"appView?mediaType=json";
-						data = {username: userData.username, appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE"};
+						data = {username: userData.username, appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE", documentIdList: input.documentIdList};
 						sb.utilities.postV2(snippetUrl, data, _showStories);
 					}else{
-		    			sb.utilities.postV2(relPathIn+'appView?mediaType=json', {appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE"}, _showStories);
+		    			sb.utilities.postV2(relPathIn+'appView?mediaType=json', {appname: input.appname, lastUpdatedStreamDate: lastUpdatedStreamDate, streamSize: numberOfStoriesToGet, postedBeforeAfter: "BEFORE", documentIdList: input.documentIdList}, _showStories);
 					}
 	    		}
 	    		if(lastUpdatedStreamDate != "" && lastUpdatedStreamDate != null && lastUpdatedStreamDate != "null"){

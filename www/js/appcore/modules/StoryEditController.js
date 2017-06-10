@@ -317,7 +317,7 @@ var storyEditController = function(sb, input){
 	   
 	   try{
 	   var storyItemHtml = tmpl(storyJSTemplateName, storyItem);
-	   sb.dom.find(storiesDiv).prepend(sb.utilities.htmlDecode(storyItemHtml));
+	   sb.dom.find('#mainContainer').find(storiesDiv).prepend(sb.utilities.htmlDecode(storyItemHtml));
 	   Core.publish("newStoryAdded", {storyItemDivId: "#storyItem-"+storyItem.storyDocumentPageId});
 	   }catch(e){
 			alert(e);   

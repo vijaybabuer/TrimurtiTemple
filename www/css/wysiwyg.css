@@ -1,6 +1,8 @@
 html{
-	overflow: hidden;
+	overflow: hidden !important;
 }
+
+
 body{
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;		
@@ -205,8 +207,13 @@ em{
   background: radial-gradient(#FFFFFF 5%, #262626 95%); /* Standard syntax */	
 }
 
-#documentTitleLabel, .numberOfReaders, .documentNumberOfStories, .documentItemSince, #storyItemHeader, .documentItem, .latesStoriesTitle, .storyItemFooter, .documentMedia{
+.storyItemFooter{
+	font-size: 0.75em !important;
+}
+
+#documentTitleLabel, .numberOfReaders, .documentNumberOfStories, .documentItemSince, #storyItemHeader, .documentItem, .latesStoriesTitle, .documentMedia, .documentItemOwnerDiv, .pageHeaderReactionList, .pageHeaderReactionList, .Messages{
 	display: none !important;	
+	
 }
 
 /* ---- grid ---- */
