@@ -127,7 +127,8 @@ var pageViewController = function(sb, input){
 				}
 		   }else{
 				sb.dom.find("#loginRegisterButton").fadeIn();   
-				sb.dom.find("#guestWelcome").fadeIn();   
+				sb.dom.find("#guestWelcome").fadeIn(); 
+				sb.dom.find("#eulaModal").modal('open');				
 			}
 		}catch(e){
 			alert('process page info pvc ' + e);	

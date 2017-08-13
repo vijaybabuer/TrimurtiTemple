@@ -78,7 +78,73 @@ Core = function(_$) {
 			},
 			deleteUserInfo: function(){
 				alert('not supported');
-			},			
+			},	
+			uploadFilePhoto: function(referenceUrl, fileName, progressId, _uploadSuccess, _uploadFailure){
+				var options = new FileUploadOptions();
+				var percentageText = "10%";
+				 options.fileKey = "file";
+				 options.fileName = fileName.substr(fileName.lastIndexOf('/')+1);
+				 var dotQualifiers = fileName.split(".");
+				 if(dotQualifiers.length > 0){
+					 options.mimeType = "image/"+dotQualifiers[dotQualifiers.length - 1];
+					 if(options.mimeType == "image/jpg"){
+						options.mimeType = "image/jpeg";	 
+					 }
+				 }else{
+					 options.mimeType = "image/jpeg";
+				 }
+				 //alert(options.mimeType);
+				 options.httpMethod = "POST";
+				 options.chunkedMode = true;
+				 var ft = new FileTransfer();
+				 var _fileUploadProgress = function (e){					 			
+					 			if(e.lengthComputable){
+									try{
+										_$(progressId).find('.determinate').css('width',  (e.loaded / e.total) * 100 + '%');
+										if((e.loaded / e.total) > 0.95){
+											if(_$(progressId).find('.determinate').length > 0){
+											_$(progressId).find('.determinate').remove();
+											}
+											if(_$(progressId).find('.progress').find('.indeterminate').length == 0){
+											_$(progressId).find('.progress').html('<div class="indeterminate"></div>');
+											}
+										}
+									}catch(e){
+										alert(e);	
+									}
+								}
+				}				 
+				 ft.onprogress = _fileUploadProgress;
+
+				 var csrfTokenValue = _$("meta[name='_csrf']").attr("content");
+				 var csrfTokenName = _$("meta[name='_csrf_header']").attr("content");	
+				 var headers = {csrfTokenName: csrfTokenValue};
+
+				//alert(csrfTokenValue + " " + csrfTokenName);
+				 options.headers = headers;		 
+		
+					options.params = {
+							"_csrf" : csrfTokenValue
+						}
+				 //alert('here ' + JSON.stringify(options.params));
+				 try{
+				var url = baseHost;				
+				if(userData.authorizationType){
+					if(userData.authorizationType == 'social'){
+						url = url + userData.authorizationType + "/" + referenceUrl;
+					}else{
+						url = url + userData.authorizationType + "/" + referenceUrl + '&a=' + userData.authorization;	
+					}
+				}else{
+					url = url + referenceUrl;
+				}					 
+				 ft.upload(fileName, encodeURI(url), _uploadSuccess, _uploadFailure, options);
+				 //alert('done');
+				 }catch(e){
+						alert(e);
+				 }						
+				
+			},
 			merge: _$.extend,
 			map: _$.map,
 			data: _$.data,
@@ -323,7 +389,7 @@ Core = function(_$) {
 					success: successMethod,
 					failure: failureMethod
 				});				
-			}			
+			}
 		},
 		_json = {
 			each: _$.each,

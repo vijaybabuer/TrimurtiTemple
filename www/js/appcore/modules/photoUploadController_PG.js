@@ -1,7 +1,7 @@
 var photoUploadController = function(sb, input){
 	var containerPanelBody = null, uploadCancelBtn=null, fileuploaderror=null, appPicInput=null, relPathIn=input.relPath, currentAlbumDivId = null, myComp=null, webCam=null, profPicDevice = null, profPicCam = null,
 		selectFilesBtn=null, uploadStartBtn=null, photoUploadMessageDiv=null, uploadSuccessMessage='<span class="p">Upload successful.</span>', uploadFailureMessage='<span class="br p">Upload failure</span>', uploadNumber = 0;
-		uplPnlBody=null, currentSelection=null, webCamStartButton=null, webCamCaptureButton=null, webCamStopButton=null, webCamImageNode=null, webCamImage=null, WebCamPicSendBtn=null, containerElement='#uploadControllerPane',  thumnailhtmltemplate=sb.dom.find("#template-albumpicturethumbnail").html(), thumnailhtml=null, picturecontainer=null;   
+		uplPnlBody=null, currentSelection=null, webCamStartButton=null, webCamCaptureButton=null, webCamStopButton=null, webCamImageNode=null, webCamImage=null, WebCamPicSendBtn=null, containerElement='#uploadControllerPane',  thumnailhtmltemplate=sb.dom.find("#template-albumpicturethumbnail").html(), thumnailhtml=null, picturecontainer=null, deletePicHtml=null;   
 
 	function _closeUploader(){
 		console.log('close clicked..');
@@ -74,6 +74,8 @@ var photoUploadController = function(sb, input){
 	}
 	
 	function _addAlbumPicturesSuccess(data){
+			sb.dom.find('#storyMedia').find('#attachPictures').find('i').removeClass('fa-cog fa-spin fa-fw');
+			sb.dom.find('#storyMedia').find('#attachPictures').find('i').addClass('fa-paperclip');			
 		appPicInput=data;
 		_publishAdd();
 		if(data.documenttype == 'PVTSTYPIC'){
@@ -89,19 +91,22 @@ var photoUploadController = function(sb, input){
 		}
 	}
 	function _errorInDocumentCreate(request, errorMessage, errorObj){
-		alert("Request " + JSON.stringify(request) + " " + JSON.stringify(errorMessage) + " " + JSON.stringify(errorObj));
+
+		Materialize.toast("Request " + JSON.stringify(request) + " " + JSON.stringify(errorMessage) + " " + JSON.stringify(errorObj), 2000);
 	}
 	
 	function _addAlbum(input){
 		try{		
 		if(input.documenttype != null && input.documenttype != ""){
+			sb.dom.find('#storyMedia').find('#attachPictures').find('i').removeClass('fa-paperclip');
+			sb.dom.find('#storyMedia').find('#attachPictures').find('i').addClass('fa-cog fa-spin fa-fw');
 			sb.utilities.postV2(relPathIn+"document.pvt?mediaType=json",{documenttype: input.documenttype, documentname: input.documentname}, _addAlbumPicturesSuccess,_errorInDocumentCreate);
 		}else{
 			photoUploadMessageDiv.html('There was problem creating album. Please try again later.');
 			console.log('Album type was not provided. ');
 		}
 		}catch(err){
-			alert('Exception during Album Add : ' + err);
+			Materialize.toast('Exception during Album Add : ' + err, 2000);
 		}
 	}
 
@@ -138,7 +143,7 @@ var photoUploadController = function(sb, input){
 				picturecontainer.append(thumnailhtml);				
 	}
 	function _saveWebCamPictureError(request, errorMsg, errorObj){
-		alert(JSON.stringify(request) + " " + JSON.stringify(errorMsg) + " " +JSON.stringify(errorObj));
+		Materialize.toast(JSON.stringify(request) + " " + JSON.stringify(errorMsg) + " " +JSON.stringify(errorObj), 2000);
 	}
 	function uploadPhotoV2(imageData){
 		uploadNumber = uploadNumber + 1;		
@@ -149,7 +154,7 @@ var photoUploadController = function(sb, input){
 		try{
 		navigator.camera.cleanup();
 		}catch(error){
-			alert(error);	
+			Materialize.toast(error, 2000);	
 		}
 	}
 	
@@ -161,72 +166,152 @@ var photoUploadController = function(sb, input){
 		}
 	}
 	
-	function uploadPhoto(imageURI) {
-		var options = new FileUploadOptions();
-		 options.fileKey = "file";
-		 options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-		 options.mimeType = "text/plain";
-		 options.httpMethod = "POST";
-		 options.chunkedMode = true;
-		 var ft = new FileTransfer();
-		 ft.onprogress = photoUploadProgress;
-		 var authoriztion = sb.utilities.getUserInfo().authorization;
-		 var csrfTokenValue = sb.dom.find("meta[name='_csrf']").attr("content");
-		 var csrfTokenName = sb.dom.find("meta[name='_csrf_header']").attr("content");	
-		 var headers = {csrfTokenName: csrfTokenValue};
-		 
-		 options.headers = headers;
+	function _updateAlbumView_FileUpload(responseString){
+		var response = JSON.parse(responseString);
+		var albumDivId = '#album-'+response.albumDocumentId+'-'+response.albumDocumentType+'-'+response.fileId;
+		if(response.files && response.files.length > 0){
+			sb.dom.find(albumDivId).find('.progress').remove();
+			try{
+			for(var i=0; i < response.files.length; i++){
+				deletePicHtml = sb.dom.find("#jstemplate-photoUploadController-deleteDownloadPhoto").html();
+				deletePicHtml = deletePicHtml.replace("albumpicid",response.files[i].documentPageId);
+				deletePicHtml = deletePicHtml.replace("albumpicid",response.files[i].documentPageId);
+				//alert(deletePicHtml);
+				sb.dom.find(albumDivId).append(deletePicHtml);
+			}
+			}catch(e){
+				Materialize.toast(e, 2000);	
+			}
+			/*for(var i=0; i < response.files.length; i++){
+				picturecontainer = sb.dom.find('#album-'+appPicInput.documentid+'-'+appPicInput.documenttype).find(".albumpictures");
+				thumnailhtml = thumnailhtmltemplate;
+				thumnailhtml=thumnailhtml.replace("albumpicid", response.files[i].documentPageId);
+				thumnailhtml=thumnailhtml.replace("albumpicid",response.files[i].documentPageId);
+				thumnailhtml=thumnailhtml.replace("albumpicid",response.files[i].documentPageId);			
+				thumnailhtml=thumnailhtml.replace("pictureurl",input.palpostrHost+"tnphoto1.pvt/"+response.files[i].documentPageId+"?mediaType=jpeg");
+				picturecontainer.append(thumnailhtml);						
+			}*/			
+		}else{
+			Materialize.toast("There was a problem uploading the media. Please try again.", 2000);	
+		}
 
-		 ft.upload(imageURI, encodeURI(relPathIn+'api/photoUpload?mediaType=jpeg'), function(result){
-																						 
-		 alert(JSON.stringify(result));
-		 
-		 }, function(error){
-		 alert(JSON.stringify(error));
-		 }, options);
+	}
+	function uploadFilePhotoSuccess(successResponse){
+		Materialize.toast("Media File Upload Success", 2000);
+		if(successResponse.response.txnStatus){
+			if(appPicInput.documenttype == 'PVTSTYPIC'){
+				if(data.txnStatus == "FAILED"){
+					photoUploadMessageDiv.html('<span class="br p cw">Photo upload failed. Please try again later</span>');
+				}else{
+					photoUploadMessageDiv.html('<span class="br p">Photo upload failed. Please try again later</span>');
+				}			
+			}
+		}else{
+			if(appPicInput.documenttype == 'PVTSTYPIC'){
+				photoUploadMessageDiv.html('<span class="p">Picture has been saved. For your security, you can view it once you post the message.</span>');
+			}
+			//_publishUpdate();
+			_updateAlbumView_FileUpload(successResponse.response);
+			if(appPicInput.documenttype == 'PROFPICS'){
+				sb.utilities.getUserInfo().userDetails.profilePictureId = data.documentpageid;
+				Core.publish('refreshProfilePicture', null);
+			}
+		}		
+	}
+	
+	function uploadFilePhotoFailure(response){
+		Materialize.toast('there was a problem uploading file ' + JSON.stringify(response), 2000);
+	}
+	function uploadFilePhoto(fileName){
+		uploadNumber = uploadNumber + 1;
+		var albumDivId = 'album-'+appPicInput.documentid+'-'+appPicInput.documenttype;
+		var progressHtml = '';
+		if(!fileName.startsWith('file:')){
+			progressHtml = '<div id="'+albumDivId+'-'+uploadNumber+'" style="text-align: center; max-width: 200px; float: left; margin: 2px;"><img src="file://'+fileName+'" height="150px;"/><div class="progress" ><div class="determinate" style="width: 0%; height: 10px;"></div></div></div>';
+		}else{
+			progressHtml = '<div id="'+albumDivId+'-'+uploadNumber+'" style="text-align: center; max-width: 200px; float: left; margin: 2px;"><img src="'+fileName+'" height="150px;"/><div class="progress" ><div class="determinate" style="width: 0%; height: 10px;"></div></div></div>';			
+		}		
+		sb.dom.find('#'+albumDivId).find('.albumpictures').prepend(progressHtml);	
+		sb.utilities.uploadFilePhoto('fileUpload/'+appPicInput.documenttype+'/'+appPicInput.documentid+'/'+uploadNumber+'.pvt?mediaType=json', fileName, '#'+albumDivId+'-'+uploadNumber, uploadFilePhotoSuccess, uploadFilePhotoFailure);
+	}
+	function uploadPhoto1(imageURI) {
+		try{
+			//alert(imageURI);
+     		window.resolveLocalFileSystemURL(imageURI, function(fileEntry) {
+			//alert(imageURI + '-1' + fileEntry.fullPath);
+			var fileMimeType = "image/jpeg";
+			uploadFilePhoto(fileEntry.toURL());
+        });
+		}catch(e){
+			Materialize.toast('uri problem ' + e, 2000);
+		}
 	}
 
- 
+	function uploadPhoto(imageURI) {
+		//alert(imageURI);
+		try{
+			uploadFilePhoto(imageURI);
+		}catch(e){
+			Materialize.toast('uri problem ' + e, 2000);
+		}
+	}
+	 
 	 function _addPictureFromWebCam(input){
 		try{
 		if(input.documentid != null && input.documentid != ""){
 			appPicInput=input;
-			navigator.camera.getPicture(uploadPhotoV2, function(message) {
-			 alert('Get Picture Cancelled');
+			navigator.camera.getPicture(uploadPhoto1, function(message) {
+			 Materialize.toast('Get Picture Cancelled ' + message, 2000);
 			 }, {
-			 quality: 50,
-			 destinationType: navigator.camera.DestinationType.DATA_URL,
+			 quality: 100,
+			 destinationType: navigator.camera.DestinationType.FILE_URI,
 			 sourceType: navigator.camera.PictureSourceType.CAMERA,
- 			 mediaType: navigator.camera.PictureSourceType.PICTURE
+ 			 mediaType: navigator.camera.MediaType.PICTURE
 			 });
 			//Create Pictures for album
+			
 		}else{
 			photoUploadMessageDiv.html('There was problem. Please try again later.');
-			alert('Album ID was not provided. ');
+			//alert('Album ID was not provided. ');
 		}
 		}catch(err){
-			alert('Exception during add picture from device ' + err);
+			Materialize.toast('Exception during add picture from device ' + err, 2000);
 		}		 
 	 }
 	function _addPictureFromDevice(input){	
 		try{
 		if(input.documentid != null && input.documentid != ""){
 			appPicInput=input;
-			navigator.camera.getPicture(uploadPhotoV2, function(message) {
-			 alert('Get Picture Cancelled');
+			navigator.camera.getPicture(uploadPhoto, function(message) {
+			 Materialize.toast('Get Picture Cancelled ' + message, 2000);
 			 }, {
-			 quality: 50,
-			 destinationType: navigator.camera.DestinationType.DATA_URL,
-			 sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
- 			 mediaType: navigator.camera.PictureSourceType.PICTURE
+			 quality: 100,
+			 destinationType: navigator.camera.DestinationType.FILE_URI,
+			 sourceType: navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
+ 			 mediaType: navigator.camera.MediaType.ALLMEDIA
+			 
 			 });
+			
+			/*var options = {
+				   maximumImagesCount: 10,
+				   quality: 100
+				  };
+  
+			window.imagePicker.getPictures(options).then(
+				function(results) {
+					for (var i = 0; i < results.length; i++) {
+						uploadPhoto(results[i]);
+					}
+				}, function (error) {
+					alert('Error: ' + error);
+				});*/		
 			//Create Pictures for album
 		}else{
 			photoUploadMessageDiv.html('There was problem. Please try again later.');
 			console.log('Album ID was not provided. ');
 		}
 		}catch(err){
-			alert('Exception during add picture from device ' + err);
+			Materialize.toast('Exception during add picture from device ' + err, 2000);
 		}
 	}
 	
@@ -244,6 +329,7 @@ var photoUploadController = function(sb, input){
 	   function _photoDeleteResponseReceived(data){
 		   if(data.antahRequestStatus == "SUCCESS"){
 			   sb.dom.find("#thumbNailPreview-"+data.antahResponseMessage).remove();
+			   sb.dom.find("#deleteLink-"+data.antahResponseMessage).parent().remove();
 			   if(data.albumDocumentType == 'PROFPICS'){
 				   if(data.profilePictureUpdate && !data.noProfilePicture){
 						Core.publish('refreshProfilePicture', null);
@@ -273,21 +359,21 @@ var photoUploadController = function(sb, input){
 		try{
 		if(input.documentid != null && input.documentid != ""){
 			appPicInput=input;
-			navigator.camera.getPicture(uploadPhotoV2, function(message) {
+			navigator.camera.getPicture(uploadPhoto1, function(message) {
 			 Materialize.toast('Upload cancelled', 2000);
 			 }, {
 			 quality: 50,
-			 destinationType: navigator.camera.DestinationType.DATA_URL,
+			 destinationType: navigator.camera.DestinationType.FILE_URI,
 			 sourceType: navigator.camera.PictureSourceType.CAMERA,
- 			 mediaType: navigator.camera.PictureSourceType.PICTURE
+ 			 mediaType: navigator.camera.MediaType.PICTURE
 			 });
 			//Create Pictures for album
 		}else{
 			photoUploadMessageDiv.html('There was problem. Please try again later.');
-			alert('Album ID was not provided. ');
+			Materialize.toast('Album ID was not provided. ', 2000);
 		}
 		}catch(err){
-			alert('Exception during add picture from device ' + err);
+			Materialize.toast('Exception during add picture from device ' + err, 2000);
 		}		 
 	 }
 	 
@@ -296,13 +382,13 @@ var photoUploadController = function(sb, input){
 		try{
 		if(input.documentid != null && input.documentid != ""){
 			appPicInput=input;
-			navigator.camera.getPicture(uploadPhotoV2, function(message) {
+			navigator.camera.getPicture(uploadPhoto, function(message) {
 			 Materialize.toast('Upload cancelled', 2000);
 			 }, {
 			 quality: 50,
-			 destinationType: navigator.camera.DestinationType.DATA_URL,
+			 destinationType: navigator.camera.DestinationType.FILE_URI,
 			 sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY,
- 			 mediaType: navigator.camera.PictureSourceType.PICTURE
+ 			 mediaType: navigator.camera.MediaType.ALLMEDIA
 			 });
 			//Create Pictures for album
 		}else{
@@ -310,7 +396,7 @@ var photoUploadController = function(sb, input){
 			console.log('Album ID was not provided. ');
 		}
 		}catch(err){
-			alert('Exception during add picture from device ' + err);
+			Materialize.toast('Exception during add picture from device ' + err, 2000);
 		}
 	}
 	

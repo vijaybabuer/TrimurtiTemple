@@ -265,10 +265,10 @@
 						</a>
 					</div>
 					<div id="inviteFriendsDiv">
-						<a href="whatsapp://send?text=Join Trimurthi Temple App and connect with over 1 million Sourashtrians world wide. iPhone App: https://itunes.apple.com/US/app/TrimurthiTemple/id1207494642?mt=8 Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.palkar">
+						<a href="whatsapp://send?text=Join Trimurti Temple App and connect with over 1 million Sourashtrians world wide. iPhone App: Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.tmt">
 										<i id="WhatsAppInvite" class="fa fa-whatsapp" aria-hidden="true"></i><br>Invite My WhatsApp Contacts
 						</a><br>
-						<a  href="mailto:YourEmailFriend@email.com?subject=Join Palkar App&body=Connect with over 1million Sourashtrians world wide. iPhone App: https://itunes.apple.com/US/app/Palkar/id1207494642?mt=8 Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.palkar">
+						<a  href="mailto:YourEmailFriend@email.com?subject=Join Trimurti Temple App App&body=Connect with over 1million Sourashtrians world wide. iPhone App:  Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.tmt">
 										<i id="EmailInvite" class="fa fa-envelope-o" aria-hidden="true"></i><br>Invite My Email Contacts
 						</a>
 					</div>
@@ -282,6 +282,46 @@
 			  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok, Thanks</a>
 			</div>
 		  </div>
+  <div id="eulaModal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>End User Licensing Agreement ("Agreement")</h4>
+      <p>Last Updated: July 22 2017</p>
+      <p>By clicking the "I Agree" button, downloading or using the Application, you are agreeing to be bound by the terms and conditions of this Agreement. If you do not agree to the terms of this Agreement, do not click on the "I Agree" button and do not download or use the Application.</p>
+      <p><strong>License</strong> <br>
+		PalPostr.COM grants you a revocable, non-exclusive, non-transferable, limited license to download, install and use the Application solely for your personal, non-commercial purposes strictly in accordance with the terms of this Agreement.</p>
+      <p><strong>Restrictions</strong> <br>
+		You agree not to, and you will not permit others to:
+		a) license, sell, rent, lease, assign, distribute, transmit, host, outsource, disclose or otherwise commercially exploit the Application or make the Application available to any third party..</p>
+      <p><strong>Modifications to Application</strong> <br>
+		PalPostr.COM reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to you.
+      </p>
+      <p><strong>Term and Termination</strong> <br>
+This Agreement shall remain in effect until terminated by you or PalPostr.COM.
+
+PalPostr.COM may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.
+
+This Agreement will terminate immediately, without prior notice from PalPostr.COM, in the event that you fail to comply with any provision of this Agreement. You may also terminate this Agreement by deleting the Application and all copies thereof from your mobile device or from your desktop.
+
+Upon termination of this Agreement, you shall cease all use of the Application and delete all copies of the Application from your mobile device or from your desktop.
+      </p>
+      <p><strong>Severability</strong> <br>
+If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.
+      </p>
+      <p><strong>Amendments to this Agreement</strong> <br>
+PalPostr.COM reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 (changes this) days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+      </p>
+      <p><strong>Amendments to this Agreement</strong> <br>
+PalPostr.COM reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+      </p>
+      <p><strong>Contact Information</strong> <br>
+		If you have any questions about this Agreement, please contact us at welcome@palpostr.com
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <a href="eulaAgree" class="modal-action modal-close waves-effect waves-green btn-flat ">I Agree</a>
+    </div>
+  </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
@@ -474,6 +514,10 @@ Ex: john@example.com;sam@example.com</script>
 	<span class="sr-only bigScreenItem">Loading...</span>
 </div>
 </script>
+<script type="text/template" id="jstemplate-photoUploadController-deleteDownloadPhoto">
+	<br>
+	<a class="deletePhoto right btn-flat"  id="deleteLink-albumpicid" onclick="Core.publish('deleteDownloadPhoto', {photoId: 'albumpicid'})"><i class="fa fa-times"></i> Delete</a>
+</script>
 <script type="text/template" id="jstemplate-preloader">
 <div style="margin-top: 50px; margin-left: 45%;" class="preloader-wrapper small active">
     <div class="spinner-layer spinner-red-only">
@@ -597,43 +641,6 @@ Ex: john@example.com;sam@example.com</script>
 	</span>
 </a>
 {% } %}
-</script>
-
-<script type="text/unittest">
-$(document).ready(function(){
-
-try{
-	Core.register('clickReactionsController',clickReactionsController,{relPath: "", reactionCountPerPage: "5"});
-	Core.register('textReactionsController',textReactionsController,{relPath: "", reactionCountPerPage: "5"});
-	Core.register('storyEditController',storyEditController,{elemHandle: '#createStory', relPath: "http://www.palpostr.com/", addPostTextAreaHandle: ".addPostTextArea", storiesDiv: "#storiesDiv", storyJSTemplateName: "template-storyTemplate"});
-	Core.register('storyItemController',storyItemController, {relPath: "", storyPage: false, authenticatedUser: "none", storyJSTemplateName: "template-storyTemplate", getMoreStories: true, storiesDivId: "#storiesDiv", appname: "Palkar", numberOfStoriesToGet: 5});
-	Core.register('pageViewController', pageViewController, {relPath: "", loadingText: "Welcome, <br> We are downloading your stream.", appname: "Palkar", appmaintitle: "Community Updates", appextendedtitle: "Share your local community stories and pictures with more than 1 Million Palkars worldwide", streamSize: 5});
-	Core.register('sseController',sseController, {relPath: "", username: "guest", userAuthenticated: "false", pageHandle: "Palkar"});
-	Core.register('userLoginController',userLoginController, {relPath: "", pageHandle: "Palkar", palpostrHost: "http://192.168.0.101:8080/palpostr/"});
-	Core.register('messageDisplayController',messageDisplayController,{appname: 'Palkar'});
-	Core.register('photoUploadController',photoUploadController, {relPath: "", containerDiv: "#photoUploadContainerDiv"});
-	Core.register('albumsController',albumsController,{relPath: "http://www.palpostr.com/"});
-	Core.register('userLogo',userLogo,{elemHandle: '#user-logo', relPath: "http://www.palpostr.com/"});
-
-	Core.loadUserData("http://www.palpostr.com/");
-	Core.start('pageViewController');
-	Core.start('photoUploadController');
-	Core.start('clickReactionsController');
-	Core.start('messageDisplayController');
-	Core.start('textReactionsController');
-	Core.start('storyEditController');
-	Core.start('storyItemController');
-	Core.start('sseController');
-	Core.start('userLoginController');
-	Core.start('albumsController');
-	Core.start('userLogo');
-
-	}catch(err){
-		alert(err);
-	}
-
-
-});
 </script>
 
 </html>

@@ -198,7 +198,9 @@ em{
     background-color: #b90900;
     color: #333;
 }
-
+.addRead{
+	display: none;
+}
 .bgGradient{
   background: #ffffff; /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(#FFFFFF 5%, #262626 95%); /* Safari 5.1-6.0 */
