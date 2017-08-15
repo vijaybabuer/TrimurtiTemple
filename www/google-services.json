@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "816509705610",
+    "firebase_url": "https://trimurtitempleapp.firebaseio.com",
+    "project_id": "trimurtitempleapp",
+    "storage_bucket": "trimurtitempleapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816509705610:android:0da5d5aea0a18366",
+        "android_client_info": {
+          "package_name": "com.palpostr.tmt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816509705610-7apr295s8n0eqs89dc2jm1gluvaruk5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJGNFNcykJcdlGWv24qwruz8ydXYXNblM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

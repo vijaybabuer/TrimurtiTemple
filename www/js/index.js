@@ -44,11 +44,12 @@ var app = {
 	
         app.receivedEvent('deviceready');
 	try{
+	var appVersion = '1.1.33';		
 	Core.register('clickReactionsController',clickReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('textReactionsController',textReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('storyEditController',storyEditController,{elemHandle: '#createStory', relPath: "http://www.palpostr.com/", addPostTextAreaHandle: ".addPostTextArea", storiesDiv: "#storiesDiv", storyJSTemplateName: "template-storyTemplate"});		
 	Core.register('storyItemController',storyItemController, {relPath: "", storyPage: false, authenticatedUser: "none", storyJSTemplateName: "template-storyTemplate", getMoreStories: true, storiesDivId: "#storiesDiv", appname: "TrimurtiTempleDevasthanam", numberOfStoriesToGet: 5, documentIdList: documentIdArray});
-	Core.register('pageViewController', pageViewController, {relPath: "", mainPageDocumentId: "336549566774870509", loadingText: "Welcome, <br> We are downloading your stream.", appname: "TrimurtiTempleDevasthanam", appmaintitle: "Community Updates", appextendedtitle: "Share your local community stories and pictures with more than 1 Million TrimurtiTempleDevasthanams worldwide", streamSize: 5, documentIdList: documentIdArray});	
+	Core.register('pageViewController', pageViewController, {relPath: "", appVersion: appVersion, mainPageDocumentId: "336549566774870509", loadingText: "Welcome, <br> We are downloading your stream.", appname: "TrimurtiTempleDevasthanam", appmaintitle: "Community Updates", appextendedtitle: "Share your local community stories and pictures with Trimurti Temple Devasthanams Devotees", streamSize: 5, documentIdList: documentIdArray});	
 	Core.register('sseController',sseController, {relPath: "", username: "guest", userAuthenticated: "false", pageHandle: "TrimurtiTempleDevasthanam"});
 	Core.register('userLoginController',userLoginController, {relPath: "", pageHandle: "TrimurtiTempleDevasthanam", palpostrHost: "http://www.palpostr.com/"});
 	Core.register('messageDisplayController',messageDisplayController,{appname: 'TrimurtiTempleDevasthanam'});

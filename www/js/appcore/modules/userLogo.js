@@ -246,7 +246,7 @@ var userLogo = function(sb, input){
    function _setupPushNotifications(){
 		pushNotification = PushNotification.init({
 						android: {
-						senderID: "601600954865"
+						senderID: "816509705610"
 						},
 						ios: {
 						alert: "true",

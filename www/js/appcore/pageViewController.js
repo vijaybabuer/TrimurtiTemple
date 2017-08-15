@@ -485,7 +485,7 @@ var pageViewController = function(sb, input){
 			document.getElementById("message1").innerHTML = "Requesting new CSRF Token " + JSON.stringify(request);
 			sb.dom.find('meta[name=_csrf]').remove();
 			sb.dom.find('meta[name=_csrf_header]').remove();		
-			var appPageUrl = relPathIn + "appPage/"+appname+"/"+input.appmaintitle+"/"+input.appextendedtitle+"?mediaType=text";
+			var appPageUrl = relPathIn + "appPage/"+appname+"/"+input.appVersion+"/"+device.platform+"/"+input.appmaintitle+"/"+input.appextendedtitle+"?mediaType=text";
 			sb.utilities.appGet(appPageUrl,_loadAppPage,_errorStartController);
 		}catch(e){
 				alert(e);	
@@ -496,7 +496,7 @@ var pageViewController = function(sb, input){
 			var screenHeight = sb.dom.find(window).height();
 			sb.dom.find('.appBody').css("height", screenHeight + " px");
 			document.getElementById("message1").innerHTML = "Loading "+appname+"..";
-			var appPageUrl = relPathIn + "appPage/"+appname+"/"+input.appmaintitle+"/"+input.appextendedtitle+"?mediaType=text";
+			var appPageUrl = relPathIn + "appPage/"+appname+"/"+input.appVersion+"/"+device.platform+"/"+input.appmaintitle+"/"+input.appextendedtitle+"?mediaType=text";
 			sb.dom.find('#refreshPanel').on('click', _refreshButtonClick);
 			sb.utilities.appGet(appPageUrl,_loadAppPage,_errorStartController);
 			console.log('snippet : 2' + appPageUrl);
