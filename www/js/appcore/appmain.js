@@ -426,7 +426,7 @@ Core = function(_$) {
 					fs.root.getFile("userInfo.txt", { create: false, exclusive: false }, function (fileEntry) {
 						readUserData(fileEntry);
 					}, function(error){createUserData('guest',null, null, null);});				
-				}, function(error){console.log('Problem Accessing File System');});		
+				}, function(error){alert('APPMAIN1: Problem Accessing File System');});		
 		}catch(e){
 			alert('Problem create user data ' + e);	
 		}

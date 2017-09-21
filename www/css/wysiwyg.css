@@ -367,7 +367,9 @@ width: 50%;
 		font-size: 14px;
 	}	
 }
-
+.tabs{
+	margin-top: 2px;
+}
 .appHeader{
 	background-color: #ffffff;
 	text-shadow: none;
@@ -542,12 +544,12 @@ width: 50%;
  	text-decoration: none; 
 	margin: 0px; 
 	border: 0px solid; 
-	font-size: 1em;
+	font-size: 1.5em;
 	color: #1c397c !important;
 	font-weight: 800;
  }
  .story{
- 	font-size: 1.5em;
+ 	font-size: 1em;
 	font-weight: 400;
  }
  #story{
@@ -1011,5 +1013,9 @@ width: 50%;
 		}
 		
 		.entry-title{
+			display: none;
+		}
+		
+		.addStoryToDocument, .addAlbumToDocument, .editDocument, .deleteDocument{
 			display: none;
 		}
