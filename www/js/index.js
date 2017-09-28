@@ -44,7 +44,11 @@ var app = {
 	
         app.receivedEvent('deviceready');
 	try{
-	var appVersion = '1.1.33';		
+
+	$.mobile.pageLoadErrorMessage = "Page Loading..";
+	$.mobile.pageLoadErrorMessageTheme = null;
+	
+	var appVersion = '1.1.37';		
 	Core.register('clickReactionsController',clickReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('textReactionsController',textReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('storyEditController',storyEditController,{elemHandle: '#createStory', relPath: "http://www.palpostr.com/", addPostTextAreaHandle: ".addPostTextArea", storiesDiv: "#storiesDiv", storyJSTemplateName: "template-storyTemplate"});		

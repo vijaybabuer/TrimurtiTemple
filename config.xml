@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.palpostr.tmt" version="1.1.36" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.palpostr.tmt" version="1.1.37" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Trimurti Temple</name>
     <description>Trimurti Temple Devasthanam is a registered Charitable Foundation. The Foundation’s mission is to build a temple in traditional Indian architectural style according to the Agama Sasthras.</description>
     <author email="welcome@palpostr.com" href="http://palpostr.com">PalPostr Team</author>
@@ -22,6 +22,7 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
 	<preference name="DisallowOverscroll" value="true" />	
+	<preference name="iosPersistentFileLocation" value="Library" />	
     <gap:plugin name="cordova-plugin-statusbar" source="npm" spec="1.0.0"/>
 	<gap:plugin name="cordova-plugin-dialogs" source="npm" spec="1.3.1"/>
 	<gap:plugin name="cordova-plugin-vibration" source="npm" spec="2.1.3"/>

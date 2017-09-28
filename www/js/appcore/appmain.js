@@ -458,7 +458,7 @@ Core = function(_$) {
 				console.log('Failure Write');
 			};
 	
-			fileWriter.write(dataObj);
+			fileWriter.write(JSON.stringify(dataObj));
 		});		
 	}
 	function createUserData(username, authorization, authorizationType, userDetails){
