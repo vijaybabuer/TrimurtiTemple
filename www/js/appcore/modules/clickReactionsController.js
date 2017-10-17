@@ -30,14 +30,14 @@ var clickReactionsController = function(sb, input){
 
 			pageReactionSummary = reaction.pageReactionSummary;
 			if(pageReactionSummary.pageReactionEnabledForUser == 'enabled'){
-				curTarget = sb.dom.find("#button-"+pageReactionSummary.pageReactionId+"-disabled");
+				curTarget = sb.dom.find('#mainContainer').find("#button-"+pageReactionSummary.pageReactionId+"-disabled");
 				if(!curTarget){
-					curTarget = sb.dom.find("#button-"+pageReactionSummary.pageReactionId+"-enabled");
+					curTarget = sb.dom.find('#mainContainer').find("#button-"+pageReactionSummary.pageReactionId+"-enabled");
 				}
 			}else{
-				curTarget = sb.dom.find("#button-"+pageReactionSummary.pageReactionId+"-enabled");
+				curTarget = sb.dom.find('#mainContainer').find("#button-"+pageReactionSummary.pageReactionId+"-enabled");
 				if(!curTarget){
-					curTarget = sb.dom.find("#button-"+pageReactionSummary.pageReactionId+"-disabled");
+					curTarget = sb.dom.find('#mainContainer').find("#button-"+pageReactionSummary.pageReactionId+"-disabled");
 				}
 			}
 
@@ -69,9 +69,9 @@ var clickReactionsController = function(sb, input){
 	
 	
 	function _updateReactionList(pageReactionDetail, loadFlag){
-		var reactionsDiv = sb.dom.find("#reactions-"+pageReactionDetail.pageReactionId);
-		var clickReactionsShowButton = sb.dom.find("#clickReacMessage-"+pageReactionDetail.pageReactionId);
-		var clickReactionsSummaryButton = sb.dom.find('#HighlightReacSummary-'+pageReactionDetail.pageReactionId);
+		var reactionsDiv = sb.dom.find('#mainContainer').find("#reactions-"+pageReactionDetail.pageReactionId);
+		var clickReactionsShowButton = sb.dom.find('#mainContainer').find("#clickReacMessage-"+pageReactionDetail.pageReactionId);
+		var clickReactionsSummaryButton = sb.dom.find('#mainContainer').find('#HighlightReacSummary-'+pageReactionDetail.pageReactionId);
 		if(pageReactionDetail.pageReactionCount == "0" || pageReactionDetail.pageReactionCount == "" || pageReactionDetail.pageReactionCount == null){
 			clickReactionsShowButton.html(pageReactionDetail.pageReactionTitle);
 			clickReactionsSummaryButton.html('<i class="fa fa-star-o"></i>'+ '<span class="bigScreenItem">'+pageReactionDetail.pageReactionTitle+'</span>');
@@ -97,7 +97,7 @@ var clickReactionsController = function(sb, input){
 		}	
 
 		reactionsDiv.addClass(reactionsLoadedStatus);
-		sb.dom.find('#HighlightReacSummary-'+pageReactionDetail.pageReactionId).addClass(reactionsLoadedStatus);
+		sb.dom.find('#mainContainer').find('#HighlightReacSummary-'+pageReactionDetail.pageReactionId).addClass(reactionsLoadedStatus);
 		Core.publish('contactToolTipAdded', {divId: "#"+reactionsDiv.attr('id')});
 		
 		if(pageReactionDetail.pageReactionHasMoreReactions){
@@ -115,7 +115,7 @@ var clickReactionsController = function(sb, input){
 			reactionsDiv.find('.showMore').hide();
 		}
 		
-		sb.dom.find('#clickReacMessage-'+pageReactionDetail.pageReactionId).triggerHandler('click');
+		sb.dom.find('#mainContainer').find('#clickReacMessage-'+pageReactionDetail.pageReactionId).triggerHandler('click');
 	}
 	
 	function _showMoreButtonClickEvent(e){
@@ -491,14 +491,14 @@ var clickReactionsController = function(sb, input){
 	}
 	
 	function _startController(msg){
-       		sb.dom.find('.hilite').bind('click',_addReaction);  
-       		sb.dom.find('.sharePageButton').each(_setSharePageTooltipV2);
-       		sb.dom.find('.clickReacMessage').bind('click',_toggleReactionList);
-       		sb.dom.find('.showMoreClickReactions').click(_showMoreButtonClickEventFirst);
-       		sb.dom.find('.hiliteResponse').each(_setHiliteResponseButtonEvents);
-       		sb.dom.find('.unhiliteResponse').each(_setUnHiliteResponseButtonEvents);
-       		sb.dom.find('.ViewSummary').each(_setViewSummaryButtonEvents);
-       		sb.dom.find('.ReactionAgreeCount').each(_setReactionAgreeCountButtonEvents);
+       		sb.dom.find('#mainContainer').find('.hilite').bind('click',_addReaction);  
+       		sb.dom.find('#mainContainer').find('.sharePageButton').each(_setSharePageTooltipV2);
+       		sb.dom.find('#mainContainer').find('.clickReacMessage').bind('click',_toggleReactionList);
+       		sb.dom.find('#mainContainer').find('.showMoreClickReactions').click(_showMoreButtonClickEventFirst);
+       		sb.dom.find('#mainContainer').find('.hiliteResponse').each(_setHiliteResponseButtonEvents);
+       		sb.dom.find('#mainContainer').find('.unhiliteResponse').each(_setUnHiliteResponseButtonEvents);
+       		sb.dom.find('#mainContainer').find('.ViewSummary').each(_setViewSummaryButtonEvents);
+       		sb.dom.find('#mainContainer').find('.ReactionAgreeCount').each(_setReactionAgreeCountButtonEvents);
       		
        		//defaultClickReactionsDivList = sb.dom.find('.storyItemFooter');
        		//_loadPageReactionList(defaultClickReactionsDivList);
