@@ -709,7 +709,7 @@ var pageViewController = function(sb, input){
 				var snippetUrl = null;
 				var data = null;
 				snippetUrl = relPathIn+"appView?mediaType=json";
-				data = {username: userData.username, appname: appname, streamSize: streamSize};			
+				data = {username: userData.username, appname: appname, streamSize: streamSize, documentIdList: input.documentIdList};			
 				sb.utilities.postV2(snippetUrl, data, _loadMainPage, _reloadAppPage);	
 		}catch(err){
 			alert(err);	

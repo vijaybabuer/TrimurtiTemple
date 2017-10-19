@@ -29,6 +29,16 @@ var storyItemController = function(sb, input){
 	   sb.dom.find(this).parent().hide();
    }
    
+	   function _setPublishStoryClickEvent(){
+		   sb.dom.find(this).bind('click', _editPublishButtonClickEvent);
+	   }   
+	   
+   function _editPublishButtonClickEvent(e){
+	   var publishStoryButton = sb.dom.find(this);
+	   var buttonId = publishStoryButton.attr('id');
+	   var storyId = buttonId.split('-')[1];
+	   Core.publish('publishStory', {storyId: storyId});	   
+   }
    
    function _unSharePageButtonClickEvent(e){
 		if(sb.utilities.isUserLoggedIn()){
@@ -252,7 +262,8 @@ var storyItemController = function(sb, input){
 				storyItemNode.find('.ShareSummary').bind('click', _ShareSummaryClick);
 				storyItemNode.find('.deleteStory').each(_setDeleteStoryClickEvent);
 				storyItemNode.find('.editStory').each(_setEditStoryClickEvent);
-	    		
+				storyItemNode.find('.publishStory').each(_setPublishStoryClickEvent);	    		
+				
 				storyItemNode.find('.listElement').bind('click', _listElementClick);
 				storyItemNode.find('.reactionCountButton').on('click', _scrollToReactionsSection);
 				scrollListContainer=storyItemNode.find('#scrollListContainer');
@@ -275,7 +286,7 @@ var storyItemController = function(sb, input){
 		}
 
 	}
-	
+	   
 	function _pageSnippetAddedReceived(message){
    		//defaultClickReactionsDivList = sb.dom.find('.storyItemFooter');
    		//_loadPageReactionList(defaultClickReactionsDivList);
@@ -295,7 +306,8 @@ var storyItemController = function(sb, input){
 	   						storyItemNode.find('.ShareSummary').bind('click', _ShareSummaryClick);
 	   						storyItemNode.find('.deleteStory').each(_setDeleteStoryClickEvent);
 	   						storyItemNode.find('.editStory').each(_setEditStoryClickEvent);
-	   			    		
+	   			    		storyItemNode.find('.publishStory').each(_setPublishStoryClickEvent);
+							
 	   						storyItemNode.find('.listElement').bind('click', _listElementClick);
 	   						storyItemNode.find('.reactionCountButton').on('click', _scrollToReactionsSection);
 	   						scrollListContainer=storyItemNode.find('#scrollListContainer');
@@ -518,7 +530,8 @@ var storyItemController = function(sb, input){
 	    		
 				sb.dom.find("#storiesDivTrailer").find("#showMore").off("click");
 	    		sb.dom.find("#storiesDivTrailer").find("#showMore").click(_showMoreStoriesClicked);
-	    		
+				sb.dom.find('.publishStory').each(_setPublishStoryClickEvent);
+				
 	    		if(storyPage){	 
 		    		reSizeBigPictures();
 		    		sb.dom.find(window).resize(reSizeBigPictures);

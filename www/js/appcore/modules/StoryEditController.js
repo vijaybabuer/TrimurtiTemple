@@ -31,7 +31,7 @@ var storyEditController = function(sb, input){
    
    function _showUserLogoOptionsPanel(){
 	   
-   }
+   }	   
    
    function _startPictureUploadController(){
 	   if(albumForStoryID == null || albumForStoryID ==  0 ){
@@ -557,6 +557,21 @@ var storyEditController = function(sb, input){
 			alert(e);	
 		}
 	}
+	
+   function updateMessageSuccess(data){
+	   if(data.antahRequestStatus=="SUCCESS"){
+		   refreshForm(data);
+	   }else{
+		   Core.publish("displayMessage",{message: sb.dom.find("#jstemplate-ErrorMessage").html(), messageType: "failure"});
+	   }
+	  
+   }
+   
+   function _publishStoryButtonClick(input){
+	   var storyId = input.storyId;
+	   sb.utilities.put(relPathIn+"shrmsg.pvt?mediaType=json",{documentpageid: storyId, publishStory: true},updateMessageSuccess);
+   }
+   
    function _startController(){
 				try{
        			//Module Initializing
@@ -598,6 +613,7 @@ var storyEditController = function(sb, input){
        			sb.dom.find(".addStoryToDocument").bind('click',_addStoryToDocumentClickEvent);
        			sb.dom.find(".addAlbumToDocument").bind('click',_addAlbumToDocumentClickEvent);
 				sb.dom.find("#initializeRichTextEditor").click(_initializeWYSIWYGEditorEvent);
+
        			newMessageButton.bind('click',_showNewMessageForm);  
 				//_showNewMessageForm();
        			
@@ -616,6 +632,8 @@ var storyEditController = function(sb, input){
 	    		Core.subscribe('pageSnippetAdded', _pageSnippetAddedProcess);
 				Core.subscribe('userLoginEvent', _userLoggedIn);
 				Core.subscribe('shareScore', _shareScoreMessage);
+				Core.subscribe('publishStory', _publishStoryButtonClick);
+				
 				}catch(e){
 					alert(e);	
 				}
