@@ -290,6 +290,7 @@ var userLoginController = function(sb, input){
 		;
 	}
 	function _logOffFailure(request, errorMessage, errorObj){
+		alert('Error during Logoff.');
 		navigator.notification.alert('There was a problem. Please try agin later. ' + JSON.stringify(request), alertDismissed, input.appname, 'Ok, Thanks');		
 			if(navigator.app){
 				sb.utilities.setUserInfo('guest', null, null, null);
@@ -298,6 +299,7 @@ var userLoginController = function(sb, input){
 				sb.utilities.setUserInfo('guest', null, null, null);
 				navigator.device.exitApp();
 			}else{
+				sb.utilities.setUserInfo('guest', null, null, null);
 				navigator.notification.alert('Your Operating System does not support this feature. Please close the App by pressing the home button on your Device', alertDismissed, input.appname, 'Ok, Thanks');		
 			}		
 	}
@@ -314,16 +316,16 @@ var userLoginController = function(sb, input){
 				navigator.notification.alert('Successfully logged off. Please close the App by pressing the home button on your Device', alertDismissed, input.appname, 'Ok, Thanks');		
 			}
 		}else{
+				sb.utilities.setUserInfo('guest', null, null, null);
 				navigator.notification.alert('There was a problem. Please try agin later. ' + response.antahResponseMessage, alertDismissed, input.appname, 'Ok, Thanks');	
 		}
 	}
 	function _logOffuser(){
 		sb.utilities.postV2('logoff?mediaType=json', null, _logOffSuccess, _logOffFailure);
+		sb.utilities.setUserInfo('guest', null, null, null);
 	}
 	function _exitAppConfirmLogoff(button){
-		if(button == 2){
 			_logOffuser();
-		}
 	}
 	
 
