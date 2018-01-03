@@ -1,0 +1,50 @@
+/* CSS Document */
+@media (max-height: 2200px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 2500px !important;
+ }
+}
+@media (max-height: 2000px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 2300px !important;
+ }
+}
+@media (max-height: 1800px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 2100px !important;
+ }
+}
+@media (max-height: 1600px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 1900px !important;
+ }
+}
+
+@media (max-height: 1400px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 1700px !important;	
+ }
+}
+@media (max-height: 1200px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 1500px !important;	
+ }
+}
+@media (max-height: 1000px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 1300px !important;
+ }
+}
+@media (max-height: 800px) {          
+ #containerDiv, #mainContainer, .subContainer{
+	height: 1100px !important;	
+ }
+}
+@media (max-height: 500px) {          
+ #containerDiv, #mainContainer, .subContainer{
+ 
+	height: 800px !important;
+ }
+}
+
+

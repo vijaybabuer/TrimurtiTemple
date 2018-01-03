@@ -1,0 +1,43 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.palpostr.palkar"
+        }
+    }
+}

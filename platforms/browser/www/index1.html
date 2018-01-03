@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">	
+		<link rel="stylesheet" href="css/materialize/materialize.css" type="text/css" />		
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" href="css/yui3/3.13.0/build/cssgrids/cssgrids.css" type="text/css" />
+		<link rel="stylesheet" href="css/yui3/3.17.1/cssreset/cssreset-min.css" type="text/css" />
+		<link rel="stylesheet" href="css/yui3/3.12.0/build/cssbutton/cssbutton.css" type="text/css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />	
+		<link rel="stylesheet" href="css/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+		<link rel="stylesheet" href="js/plugins/jquery.powertip-1.2.0/css/jquery.powertip.css" type="text/css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">		
+		<link rel="stylesheet" href="css/effects.css" type="text/css" />
+		<link rel="stylesheet" href="css/standard.css" type="text/css" />
+		<link rel="stylesheet" href="css/storyItem.css" type="text/css" />
+		<link rel="stylesheet" href="css/wysiwyg.css" type="text/css" />
+		<link rel="stylesheet" href="css/swipe.css" type="text/css" />		
+		<link rel="stylesheet" href="css/scroll.css" type="text/css" />
+		<link rel="apple-touch-icon" href="icon.png">
+        <title>Welcome to Palkar News!</title>
+		<style type="text/css" media="all">
+			@font-face{
+				font-family: AsperGit;
+				src: url('font/Aspergit.otf') format("opentype");
+			}
+			@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');			
+		</style>		
+    </head>
+
+    <body>
+        <div data-role="page" class="appBody" id="mainPage" > 		       
+				<div class="appHeader noshadow">
+					<div class="topRow">
+						<a href="#rightPanel" class="ui-btn ui-btn-inline noshadow" id="showRightPanel"><i class="fa fa-bars"></i></a>
+						<a class="ui-btn ui-btn-inline noshadow" id="newMessageButton"><i class="material-icons">message</i></a>						
+						<a href="#loginRegisterPage" class="ui-btn ui-btn-inline noshadow" id="loginRegisterButton"><i class="fa fa-user-plus" aria-hidden="true"></i></a>				
+						
+						<a  id="containerBackButton" class="ui-btn ui-btn-inline noshadow nd">
+							<i class="fa fa-chevron-left"></i>
+						</a>
+						<a  href="#leftPanel" id="palpostr-url" class="ui-btn ui-btn-inline noshadow" >
+							<i class="fa fa-home" aria-hidden="true"></i>&nbsp;Palkar
+						</a>		
+					</div>
+				</div>
+														 				
+				<div class="containers" id="containerDiv">				
+					<div>
+						  <ul class="tabs">
+							<!-- <li class="tab col"><a id="storyPostContainerTab" href="#storyPostContainer"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Post</a></li> -->
+							<li class="tab col"><a class="active" href="#mainContainer">Stream</a></li>
+							<li class="tab col"><a id="profileContainerTab" href="#profileContainer"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+						  </ul>									
+					</div>					
+					<div class="container" id="mainContainer">
+						<p id="guestWelcome">You are missing out! Login or Register today to activitate tons of exciting features on the App.</p>						
+						<a class="ui-btn ui-btn-inline noshadow nd lt" id="refreshPanel" disabled>
+								<i class="fa fa-refresh"></i> Show Latest Stories
+						</a>
+						<div id="createStory" style="background-color: #ffffff; padding-top: 2px; text-align: left; margin-top: 45px; display: none; width: 100%;">								
+							<form class="bw" id="addPostForm"  method="POST" action=''>
+								<div class="card" style="margin: 0px; padding: 0px; border: 1px solid #ffffff;">
+									<div class="card-content" style="margin: 0px; padding: 0px; border: 1px solid #ffffff;">
+										<div id="storyMedia">
+											<div id="panel-hdr">											
+												<a class="ui-btn  ui-btn-inline lt activator bw stdf" style="margin: 5px; padding: 5px; border: 0px;"><i class="fa fa-gear"  aria-hidden="true"></i></a>	
+												<a class="ui-btn  ui-btn-inline lt stdf" id="initializeRichTextEditor" style="margin: 5px; padding: 5px; border: 0px;"><i class="fa fa-paragraph" aria-hidden="true"></i></a>
+												<a  id="attachPictures" title="Attach Pictures from your computer" class="ui-btn ui-btn-inline mf right cd" style="margin: 5px; padding: 5px; border: 0px;"><i class="fa fa-paperclip" aria-hidden="true"></i></a> 
+												<a  id="myComp"  class="ui-btn ui-btn-inline mf nd right cd" style="margin: 5px; padding: 5px; border: 0px;"><i class="fa fa-file-image-o"></i></a>&nbsp;
+												<a  id="webCam" class="ui-btn ui-btn-inline mf nd right cd" style="margin: 5px; padding: 5px; border: 0px;"><i class="fa fa-camera"></i></a>   			
+											</div>																		
+											<div class="bw PVTSTYPIC privateStoryPicDiv">											
+											</div>	     
+											<div class="al addPostTextArea roberto mf bnc rnc" style="margin: 0px; padding: 2px; height: 15em; max-height: 15em; overflow-y: scroll; -webkit-user-select: text; user-select: text;" contenteditable="true" placeholder="Message"></div>
+										</div>
+									</div>
+									<div class="card-reveal">										
+											<div id="createStoryHeaderDiv" class="input-field col s12">
+											</div>										
+											<div id="storyCreateTitle" style="text-align: left;">
+												<h6>Choose A Subject for Message(optional) </h6>
+												<textarea placeholder="Subject/URL" id="subject" type="text" rows="2" cols="50" style="resize: none;" class="sq fill p stdf box"></textarea>
+											</div>
+											<div id="storyCreateOptions" style="text-align: left;">
+													<h6>Reaction Preferences (Optional)</h6>
+													<fieldset id="allReactionsButtonSet" data-role="controlgroup" class="sf" data-mini="true"> 
+																<input type="checkbox"  id="allowComments" checked >
+																	<label id="allowCommentsLabel" for="allowComments">
+																		<i class="fa fa-comments"></i>&nbsp;<span id="label">Allow Comments</span>
+																	</label>
+																<input type="checkbox" id="allowReplies"  checked >
+																	<label id="allowRepliesLabel"  for="allowReplies" >
+																		<i class="fa fa-reply"></i>&nbsp;<span id="label">Allow Replies</span>
+																	</label>
+																<input type="checkbox" id="allowHilights"  checked >
+																	<label id="allowHilightsLabel"   for="allowHilights">
+																		<i class="fa fa-star"></i>&nbsp;<span id="label">Allow Highlights</span>
+																	</label>       
+													</fieldset>	
+													<a  id="removePictures" title="Remove Pictures from Message" style="display: none;" class="ui-btn ui-btn-inline cd">
+															<i class="fa fa-camera"><i class="fa fa-times" style="vertical-align: sub;"></i></i>		
+													</a>																			
+											</div>	
+											<div>
+											<span class="right stdf grey-text text-darken-4 card-title"><i class="fa fa-times"></i></span>																
+											</div>
+									</div>
+									<div class="card-action" style="margin: 0px; padding-top: 0px; padding-bottom: 0px; text-align: center;">
+										<button id="submitButtonForm" type="submit" class="ui-btn ui-btn-inline cd" style="margin: 0px;" title="Post Message" >
+												Post
+										</button> 
+										<i id='cancel' class="fa fa-times cg right mf"></i>																		
+									</div>
+								</div>
+							</form>						
+						</div>											
+						<div id="storiesDiv">																																																				
+						</div>
+						<div id="storiesDivTrailer">
+							<button class="ui-btn cd stdf al bw noeffect nd" id="showMore" style="text-align: center;"><i class="fa fa-chevron-down"></i>&nbsp;Show More Messages</button>
+						</div>							
+					</div>					
+					<div id="profileContainer">
+						<p>You can receive realtime notifications by registering with your Facebook or Gmail Accounts.</p>
+						<p>To protect your identity, you need to login or register to use this feature. </p>
+						<a href="#loginRegisterPage" onClick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>	
+					</div>
+
+				</div>	    
+				<div class="appFooter" id="mainAppFooter">
+					<div id="message1"></div>	
+					<div id="deviceready"></div>
+				</div>		
+				
+			<div class="al b nd" data-position="right" data-position-fixed="true" data-role="panel" data-display="overlay" id="rightPanel">
+				<div id="documentPageList">Please wait while the section is loading..</div>
+			</div><!-- /panel -->		
+			<div class="al cd nd" style="overflow: scroll; " data-position="left" data-position-fixed="true" data-role="panel" data-display="overlay" id="leftPanel">
+				<a class="ui-btn cd" href="#inviteFrields"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Invite Friends</a>
+			   <p class="roberto">This App brings you Palkar Community Updates</p>
+			   <p class="roberto">Share your local community stories and pictures with more than 1 Million Palkars worldwide</p>
+			   <p class="roberto">There are an estimated 10 lac Sourashtrians world wide. Lets rediscover our culture and connect with our community world wide in this digital age.</p>
+			   <p class="roberto">We have a team of volunteers who will share news from our community on this App. We will add more features as we grow. Your feedback and ideas are most welcome.</p>			   
+			   	<p class="roberto">
+			   	Sincerely<br>
+			    PalPostr.COM <br>
+				Facebook: Palkar Mobile App
+			   	</p>	
+			</div><!-- /panel -->								
+        </div>
+		 <div data-role="page" class="row login" id="loginRegisterPage" data-add-back-btn="true"> 
+				<div class="appHeader noshadow">	
+					<a  id="showMainPageButton" href="#mainPage" class="ui-btn ui-btn-inline noshadow">
+						<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Profile Setup
+					</a>
+				</div>
+				<div id="loginRegistrationContainerDiv">
+						<div class="col" id="loginSlideScrollBar">
+							  <ul class="tabs">
+								<li class="tab col"><a class="active" href="#registrationDiv">Register</a></li>
+								<li class="tab col"><a  href="#loginDiv">Login</a></li>
+								<li class="tab col"><a href="#socialDiv">Social</a></li>
+							  </ul>							
+						</div>
+						<div class="col s12" id="registrationDiv">
+								<span  style="padding: 0px; margin: 0px;"><i class="fa fa-lock"></i>&nbsp;Please create PalPostr Account</span><br /><br />
+								<div class="row">
+								<form class="col s12" id="registrationForm">
+									<input class="invalidInfo" id="ruserFullName" type="text" placeholder="Full Name: Ex. Kumar Patek"/>
+									<input class="invalidInfo"  id="remailAddress" type="email" placeholder="Your Email Address"  />							
+									<input class="invalidInfo"  id="rusername" type="text"  placeholder="Choose username" />
+									<input class="invalidInfo"  id="rpassword" type="password"  placeholder="Choose Password" />						
+									<input type="submit" class="ui-btn cd" id="registerUser" disabled value="Register" />							
+									<button class="ui-btn cd" id="alreadyHaveAccount" >Already Registered?</button><br><br>
+									<a href="#termsAndConditions">Terms and Conditions</a>								
+								</form>
+								</div>
+								
+								<br>
+								<div id="message">Valid Name, Email Address, Username and Password required to register.</div>
+						</div>					
+						<div class="col s12" id="loginDiv">					
+								<span  style="padding: 0px; margin: 0px;" id="message"><i class="fa fa-lock"></i>&nbsp;Please Login using PalPostr Account</span><br />
+								<form id="loginForm">
+								<input type="text" id="username"  placeholder="User Name or Telephone" value=''/>
+								<input type="password" id="password"   placeholder="Password" style=" height: 2em;"/>
+								<input type="submit" class="ui-btn cd" id="authorizeUser" value="Login" /><br><br>
+								<a class="ui-btn cd" href="#mainPage"/>
+									<i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home
+								</a>
+								<button class="ui-btn  cd" id="register" >Register</button>
+								<a class="ui-btn  cd" href="http://www.palpostr.com/forgotpassword" id="forgotUsername" >Forgot?</a><br>
+								<a href="#termsAndConditions">Terms and Conditions</a>									
+								</form>
+						</div>
+						<div class="col s12" id="socialDiv">
+							<span id="message"></span>
+							<div id="socialDivTNC" style="padding-top: 1em;">
+								<h3>Please review below information </h3><br>
+									<p>Your Name, Email ID, Profile Picture from your Social Networking Provider will be shared with PalPostr.COM</p><br>
+									<p>You will need to login everytime you use Palkar App.</p>
+									<a class="ui-btn cd" id="socialLoginStart">Agree, Continue</a>
+								</ul>
+							</div>
+						</div>
+				</div>
+		 </div>	
+		 		<div data-role="page" id="termsAndConditions" data-add-back-btn="true"> 
+					<div class="appHeader noshadow">	
+						<a  id="showMainPageButton" href="#mainPage" class="ui-btn ui-btn-inline noshadow">
+							<i class="fa fa-chevron-left"></i>&nbsp;Palkar
+						</a>
+					</div>
+					<div id="termsAndConditions">
+						<p>Palkar App is a free service, run by PalPostr.COM</p>
+						<p>PalPostr.COM can delete or modify your content with or without your permission.</p>
+						<p>No Pornographic, profane, personally provoking content is allowed in any sections of the App</p>
+						<p>No Pronograpic, profane, personally provoking content is allowed in any sections of the App</p>
+						<p>For more information, please visit the terms and conditions page of PalPostr.COM</p>					
+					</div>				
+					<div class="appFooter" id="mainAppFooter">
+						<div id="message1"></div>	
+						<div id="deviceready"></div>
+						Copyright PalPostr.COM, All Rights Reserved.					
+					</div>
+				</div>	
+		 		<div data-role="page" id="inviteFrields"> 
+					<div class="appHeader noshadow">	
+						<a  id="showMainPageButton" href="#mainPage" class="ui-btn ui-btn-inline noshadow">
+							<i class="fa fa-chevron-left"></i>&nbsp;Palkar
+						</a>
+					</div>
+					<div id="inviteFriendsDiv">				
+						<a href="whatsapp://send?text=Join Palkar App and connect with over 1 million Sourashtrians world wide. iPhone App: https://itunes.apple.com/US/app/Palkar/id1207494642?mt=8 Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.palkar">
+										<i id="WhatsAppInvite" class="fa fa-whatsapp" aria-hidden="true"></i><br>Invite My WhatsApp Contacts
+						</a><br>
+						<a  href="mailto:YourEmailFriend@email.com?subject=Join Palkar App&body=Connect with over 1million Sourashtrians world wide. iPhone App: https://itunes.apple.com/US/app/Palkar/id1207494642?mt=8 Android Smart Phone App: https://play.google.com/store/apps/details?id=com.palpostr.palkar">
+										<i id="EmailInvite" class="fa fa-envelope-o" aria-hidden="true"></i><br>Invite My Email Contacts
+						</a>						
+					</div>
+				</div>	
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-timeago/jquery.timeago.js" ></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/tmpl.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/load-image.min.js"></script> 
+<script type="text/javascript" src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-process.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-image.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-audio.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-video.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/jquery.fileupload-ui.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.photobooth/jquery.photobooth.min.js"></script>
+<script type="text/javascript" src="js/plugins/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-visible/jquery.visible.min.js"></script>
+<script type="text/javascript" src="js/plugins/photoupload/js/tmpl.js"></script>
+<script type="text/javascript" src="js/plugins/jquery.powertip-1.2.0/jquery.powertip.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-debounce.js"></script>
+<script type="text/javascript" src="js/external/htmlEncoder/encoder.js"></script>
+<script type="text/javascript" src="js/external/sockjs/1.0.3/sockjs-1.0.3.min.js"></script>
+<script type="text/javascript" src="js/plugins/masonry/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="js/plugins/masonry/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-overlay/loading-overlay.min.js"></script>
+<script type="text/javascript" src="js/external/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="js/external/swipe/swipe.js"></script>
+<script type="text/javascript" src="js/external/auth0/lock-9.0.js"></script>
+<script type="text/javascript" src="js/materialize/materialize.min.js"></script>
+<script type="text/javascript" src="js/appcore/inheritance.js"></script>
+<script type="text/javascript" src="js/appcore/appmain.js"></script>
+<script type="text/javascript" src="js/appcore/pageViewController.js"></script>	
+
+<script type="text/javascript" src="js/appcore/modules/photoUploadController_PG.js"></script>	 
+<script type="text/javascript" src="js/appcore/modules/albumsController.js"></script>	
+<script type="text/javascript" src="js/appcore/modules/MessageDisplayController.js"></script>	
+<script type="text/javascript" src="js/appcore/modules/textReactionsController.js"></script>	
+<script type="text/javascript" src="js/appcore/modules/clickReactionsController.js"></script>	
+<script type="text/javascript" src="js/appcore/modules/StoryEditController.js"></script>
+<script type="text/javascript" src="js/appcore/modules/storyItemController.js"></script>
+<script type="text/javascript" src="js/appcore/modules/sseController.js"></script>
+<script type="text/javascript" src="js/appcore/modules/userLoginController.js"></script>
+<script type="text/javascript" src="js/appcore/modules/userLogo.js"></script>
+
+<script type="text/template" id="jstemplate-confirmLabel">Confirm</script>
+<script type="text/template" id="jstemplate-yesLabel">Yes</script>
+<script type="text/template" id="jstemplate-noLabel">No</script>
+<script type="text/template" id="jstemplate-OkLabel">Ok</script>
+<script type="text/template" id="jstemplate-cancelLabel">Cancel</script>
+<script type="text/template" id="jstemplate-clickReactionEnabledMessage">Click to highlight this story among your friends.</script>
+<script type="text/template" id="jstemplate-clickReactionDisabledMessage">Click to remove your hightlight action for this story.</script>
+<script type="text/template" id="jstemplate-clickReactionYesMsg">Highlights</script>
+<script type="text/template" id="jstemplate-clickReactionNoMsg">Highlights</script>
+<script type="text/template" id="jstemplate-clickReactionRePost">Re Post </script>
+<script type="text/template" id="jstemplate-commentMsg">Add a Public Comment</script>
+<script type="text/template" id="jstemplate-replyMsg">Send Private Reply</script>
+<script type="text/template" id="jstemplate-plsEntrTxt">Please enter text</script>
+<script type="text/template" id="jstemplate-textReactionYesMsg">Click to see comments and replies from your contacts to this message</script>
+<script type="text/template" id="jstemplate-textReactionNoMsg">Your contacts are yet to reply or comment to this message.</script>
+<script type="text/template" id="jstemplate-Loading">Loading..</script>
+<script type="text/template" id="jstemplate-showReplies">Show replies</script>
+<script type="text/template" id="jstemplate-hideReplies">Hide replies</script>
+<script type="text/template" id="jstemplate-CommentsLabel"><i class="fa fa-comments"></i>&nbsp;<span class="bigScreenItem">Comments</span>&nbsp;</script>
+<script type="text/template" id="jstemplate-RepliesLabel"><i class="fa fa-reply-all"></i>&nbsp;<span class="bigScreenItem">Replies</span>&nbsp;</script>
+<script type="text/template" id="jstemplate-NoCommentsLabel">No comments yet from your contacts. You can comment on the message by typing a message in the text area and clicking the comment button.</script>
+<script type="text/template" id="jstemplate-NoRepliesLabel">No replies yet from your contacts. You can send a reply by typing your reply message in the text area and clicking the reply button.</script>
+<script type="text/template" id="jstemplate-SearchUserLabel">Search members by providing their full name e.g., John Smith</script>
+<script type="text/template" id="jstemplate-SuccessMessage">
+		Success!	
+</script>
+<script type="text/template" id="jstemplate-ErrorMessage">
+		There was a problem processing your request. Please try again later.	
+</script>
+<script type="text/template" id="jstemplate-ProcessingMessage">Processing..</script>
+<script type="text/template" id="jstemplate-ProcessingSuccessMessage">Complete</script>
+<script type="text/template" id="jstemplate-ProcessingTryAgainMessage">Try again</script>
+<script type="text/template" id="jstemplate-MessageDisplayController-GeneralNote">Note</script>
+<!-- Story Add Controller Labels -->
+<script type="text/template" id="storyAddController-StoryTitle">Subject/URL</script>
+<script type="text/template" id="storyAddController-DefaultContent"><p style="color: #000000; font-size: 1em;">  <br></p></script>
+<script type="text/template" id="storyAddController-AlbumTitle">Album</script>
+<script type="text/template" id="storyAddController-MessageContent">your story/message..</script>
+<script type="text/template" id="storyAddController-AttachAlbumTitle">Attach Album</script>
+<script type="text/template" id="storyAddController-PostStory">Post Message</script>
+<script type="text/template" id="storyAddController-Cancel">Cancel</script>
+<script type="text/template" id="storyAddController-ConfirmNavigation">Don't you want to finish sending the message?</script>
+<!-- Document Controller Labels -->
+<script type="text/template" id="SignboardDialog-Title">Magazine - Preferences</script>
+<script type="text/template" id="SignboardDialog-CreateButton-Label">Start Magazine</script>
+<script type="text/template" id="SignboardDialog-DocumentCreate-failure">Operation failed. Please try again later.</script>
+<script type="text/template" id="SignboardDialog-PreferencesSet-success">Magazine Preferences has been set.</script>
+<script type="text/template" id="SignboardDialog-PreferencesSet-failure">Magazine Preferences could not be saved. Please try again later.</script>
+<script type="text/template" id="ChapterDialog-PreferencesSet-success">Exclusive Preferences has been set.</script>
+<script type="text/template" id="ChapterDialog-PreferencesSet-failure">Exclusive Preferences could not be saved. Please try again later.</script>
+<script type="text/template" id="NewSignboardDialog-CoverPage-PlaceHolder">Write a little about the Magazine. Ex; Today's Sporting giants etc</script>
+<script type="text/template" id="NewSignboardDialog-SignboardName-PlaceHolder">Choose a name for your Magazine.</script>
+<script type="text/template" id="NewSignboardDialog-SignboardName">Magazine</script>
+<script type="text/template" id="DocumentDialog-ConfirmNavigation">Please save the changes before navigating away.</script>
+<script type="text/template" id="DocumentDialog-Title">Page - Preferences</script>
+<script type="text/template" id="DocumentDialog-DocumentCreate-failure">Operation failed. Please try again later.</script>
+<script type="text/template" id="DocumentDialog-PreferencesSet-success">Page Preferences has been set.</script>
+<script type="text/template" id="DocumentDialog-PreferencesSet-failure">Page Preferences could not be saved. Please try again later.</script>
+<script type="text/template" id="DocumentDialog-CoverPage-PlaceHolder">Write a little about the Page you are creating. Ex; Today's Sporting giants etc</script>
+<script type="text/template" id="DocumentDialog-DocumentName-PlaceHolder">Page</script>
+<script type="text/template" id="DocumentController-DocumentDelete-Success">Page was deleted successfully. <a href="http://www.palpostr.com/">Home</a></script>
+<script type="text/template" id="DocumentController-DocumentDelete-Confirm">Deleting the page will delete all the stories and photos. Can you please confirm?</script>
+<script type="text/template" id="StoryItemController-StoryItemDelete-Confirm">Please confirm: deleting this story will remove any text, photos, highlights, comments and replies associated with this story. </script>
+<script type="text/template" id="StoryItemController-StoryItemDelete-Success">Story deleted successfully.</script>
+<script type="text/template" id="TextReactionController-ReactionDelete-Confirm">Please confirm. Do you want to delete this? Deleting this will delete all associated replies if any.</script>
+<script type="text/template" id="TabloidDialog-Title">Exclusive - Preferences</script>
+<script type="text/template" id="TabloidDialog-CreateButton-Label">Start Exclusive</script>
+<script type="text/template" id="TabloidDialog-DocumentCreate-failure">Operation failed. Please try again later.</script>
+<script type="text/template" id="TabloidDialog-PreferencesSet-success">Exclusive Preferences has been set.</script>
+<script type="text/template" id="TabloidDialog-PreferencesSet-failure">Exclusive Preferences could not be saved. Please try again later.</script>
+<script type="text/template" id="NewTabloidDialog-CoverPage-PlaceHolder">Write a little about the Exclusive. Ex; My ${year} year book, picture book for my little daughter</script>
+<script type="text/template" id="NewTabloidDialog-Name-PlaceHolder">Choose a name for your Exclusive. Ex; ${userAccount.userFullName}'s Exclusive ${year}</script>
+<script type="text/template" id="NewTabloidDialog-Name">Exclusive</script>
+<script type="text/template" id="NewTabloidDialog-UserSearchInput-Placeholder">Choose your contacts who post stories and media to this Exclusive.</script>
+<script type="text/template" id="EditDocumentDialog-CreateButton-Label">Done</script>
+<script type="text/template" id="DocumentItemController-IconTooBig-DialogHtml">Please pick a smaller Icon. Maximum allowed width and height is 200 pixels. <br><br>It is not mandatory to choose an Icon. If your page does not have an Icon, its Cover Page Picture will be shown as the Icon.</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-AC-SV">Page has been shared for viewing.</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-AC-SU">Page has been shared for editing.</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-AC-SM">Page has been shared for managing.</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-ModuleTitle">Share Requests</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-UNAP-SU">Request has been sent. You will get the access once the owner has approved this request.</script>
+<script type="text/template" id="jstemplate-DocumentRoleRequest-UNAP-SV">Request has been sent. You will get the access once the owner has approved this request.</script>
+<script type="text/template" id="jstemplate-DeleteDocumentRoleRequestSuccess">The page was returned.</script>
+<script type="text/template" id="jstemplate-AllContactsSubcriberAdd-Success">Share was successful.</script>
+<script type="text/template" id="jstemplate-DeleteAllSubscribers-Success">Un Share was successful.</script>
+<script type="text/template" id="jstemplate-AllContactsSubcriberAdd-Failure">There was a problem processing this request. Please try again later.</script>
+<!-- Suggest Contact Widget -->
+<script  type="text/template" id="jstemplate-SuggestContact-WidgetTitle">Pals who added you</script>
+<script  type="text/template" id="jstemplate-SuggestContact-Done">That was easy, enjoy browsing PalPostr. See ya!</script>
+<!-- Invitations Controller -->
+<script  type="text/template" id="jstmpl-Invitations-title">Invite Friends by Providing their Email Address</script>
+<script  type="text/template" id="jstmpl-Invitations-invitationmessage">Hi, visit my pages on PalPostr!</script>
+<script  type="text/template" id="jstmpl-Invitations-Processing">Processing</script>
+<script  type="text/template" id="jstmpl-Invitations-Invited">Invited</script>
+
+<script  type="text/template" id="jstemplate-stopPusbNotificationButtonHtml"><button class="cd bw ui-btn" onclick="Core.publish('stopPushNotification', null);"  id="stopPushNotification"><i class="fa fa-bell" aria-hidden="true"></i>  Stop Push Notification</button></script>
+<script  type="text/template" id="jstemplate-activatePushNotificationButtonHtml"><button class="cd bw ui-btn" onclick="Core.publish('activatePushNotification', null);"  id="activatePushNotification"><i class="fa fa-bell-o" aria-hidden="true"></i> Activate Push Notification</button></script>
+
+<script  type="text/template" id="jstmpl-Invitations-inviteeEmailList-placehoder">Ex: john@example.com;joe@example.com
+
+Enter email address of your friends. An email invitation from PalPostr, on your behalf will be sent your friends' email.
+
+If you want to invite multiple friends, please enter their addresses one after the other with a ';' separating them. 
+Ex: john@example.com;sam@example.com</script>
+
+<script  type="text/template" id="invalidRegistrationInfoText">Please review and correct the Registration Information.</script>
+<script  type="text/template" id="jstmpl-Invitations-invitationConfirmButton">Invite Friends</script>
+<script  type="text/template" id="jstmpl-Invitations-invitationCancelButton">Cancel</script>
+<script  type="text/template" id="jstmpl-Invitations-invitationDoneButton">Done</script>
+<script  type="text/template" id="jstmpl-Invitations-GAuthConfirmationDialog">To get your Gmail contacts, you may be asked to enter your Gmail email address and password on the following Authorization screen by Google. <br><br>PalPostr does not store or can 'see' your Gmail credentials. PalPostr will send member invitations to only the contacts you choose. PalPostr will not store all of your Gmail Contacts. <br><br>If you do not see the Gmail Authorization screen, please check and disable popup blocker in your browser and try again.</script>
+<script  type="text/template" id="jstmpl-allowCommentsLabel-true">Stop Comments</script>
+<script  type="text/template" id="jstmpl-allowRepliesLabel-true">Stop Replies</script>
+<script  type="text/template" id="jstmpl-allowHilightsLabel-true">Stop Highlights</script>
+<script  type="text/template" id="jstmpl-allowCommentsLabel-false">Allow Comments</script>
+<script  type="text/template" id="jstmpl-allowRepliesLabel-false">Allow Replies</script>
+<script  type="text/template" id="jstmpl-allowHilightsLabel-false">Allow Highlights</script>
+<script  type="text/template" id="jstemplate-more-stories-message"><span class="bf cd"> <i class="fa fa-cogs"></i> Page Under Construction. Older stories can be viewed shortly. </span></script>
+<script  type="text/template" id="jstemplate-show-more-stories">Show More Messages</script>
+<script  type="text/template" id="jstemplate-end-of-stories">The END</script>
+<script  type="text/template" id="jstemplate-no-new-stories">No new stories</script>
+<script type="text/template" id="jstemplate-reaction-highlight-template"><span  title="Highlight" class="ePtr sf cb hiliteResponse"><i class="fa fa-star" style="color: #ffcc33;"></i> Highlight</span>	</script>
+<script type="text/template" id="jstemplate-reaction-highlight-remove"><span  title="Un Highlight" class="ePtr sf unhiliteResponse" style="color: grey;"><i class="fa fa-star" style="color: grey;"></i> Remove</span></script>
+<script type="text/template" id="jstemplate-reaction-highlight-count"><i class="fa fa-star"></i></script>
+<script type="text/template" id="ContactListController-ContactDelete-Confirm">Please Confirm: All the Pages, Photos, Messages will be un shared.</script>
+<script type="text/template" id="ContactListController-BlockDelete-Confirm">Please Confirm: All the Pages, Photos, Messages will be un shared. You will have to Un Block before you can network again.</script>
+<script type="text/template" id="PhotoUploadController-ClickToRemove"> Click/Tap any photo to remove.</script>
+<script type="text/template" id="jstemplate-mediaActionController-confirmPhotoDelete">Do you want to delete this Photo?</script>
+<script type="text/template" id="jstemplate-login-success-label"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</script>
+<script type="text/template" id="jstemplate-login-success-message">Login Success!</script>
+<script type="text/template" id="jstemplate-registration-success-message">Your Registration was Successful! <br> <a class="ui-btn cd" href="#inviteFrields"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Invite Friends</a> <br> <a  href="#mainPage" id="palpostr-url" class="ui-btn ui-btn-inline noshadow"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</a></script>
+<script type="text/template" id="jstemplate-login-message"><i class="fa fa-lock"></i>&nbsp;Please Login using PalPostr Account</script>
+<script type="text/template" id="jstemplate-login-label"><i class="fa fa-lock"></i>&nbsp;Login</script>
+<script type="text/template" id="jstemplate-pageViewController-placeHolderContainer">
+<div id="placeHolderContainer" class="container placeHolderContainer" style="padding: 0em;  text-align: center; " class="tile">
+	<img src="img/Palkar.png" height="64" /><br>
+	<span class="sr-only bigScreenItem">Loading...</span>
+</div>
+</script>
+<script type="text/template" id="jstemplate-unAuthorizedAccessDialog">
+				<div id="unAuthorizedAccessDialog" class="container subContainer">
+					<p>To protect your identity, you need to login or register to use this feature. </p>
+					<a href="#loginRegisterPage" onclick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>
+				</div>			
+</script>
+<script type="text/unittest">
+$(document).ready(function(){
+
+try{
+	Core.register('clickReactionsController',clickReactionsController,{relPath: "", reactionCountPerPage: "5"});
+	Core.register('textReactionsController',textReactionsController,{relPath: "", reactionCountPerPage: "5"});
+	Core.register('storyEditController',storyEditController,{elemHandle: '#createStory', relPath: "http://www.palpostr.com/", addPostTextAreaHandle: ".addPostTextArea", storiesDiv: "#storiesDiv", storyJSTemplateName: "template-storyTemplate"});		
+	Core.register('storyItemController',storyItemController, {relPath: "", storyPage: false, authenticatedUser: "none", storyJSTemplateName: "template-storyTemplate", getMoreStories: true, storiesDivId: "#storiesDiv", appname: "Palkar", numberOfStoriesToGet: 5});
+	Core.register('pageViewController', pageViewController, {relPath: "", loadingText: "Welcome, <br> We are downloading your stream.", appname: "Palkar", appmaintitle: "Community Updates", appextendedtitle: "Share your local community stories and pictures with more than 1 Million Palkars worldwide", streamSize: 5});	
+	Core.register('sseController',sseController, {relPath: "", username: "guest", userAuthenticated: "false", pageHandle: "Palkar"});
+	Core.register('userLoginController',userLoginController, {relPath: "", pageHandle: "Palkar", palpostrHost: "http://192.168.0.101:8080/palpostr/"});
+	Core.register('messageDisplayController',messageDisplayController,{appname: 'Palkar'});
+	Core.register('photoUploadController',photoUploadController, {relPath: "", containerDiv: "#photoUploadContainerDiv"});
+	Core.register('albumsController',albumsController,{relPath: "http://www.palpostr.com/"});
+	Core.register('userLogo',userLogo,{elemHandle: '#user-logo', relPath: "http://www.palpostr.com/"});
+	
+	Core.loadUserData("http://www.palpostr.com/");
+	Core.start('pageViewController');
+	Core.start('photoUploadController');
+	Core.start('clickReactionsController');
+	Core.start('messageDisplayController');
+	Core.start('textReactionsController');
+	Core.start('storyEditController');
+	Core.start('storyItemController');
+	Core.start('sseController');
+	Core.start('userLoginController');
+	Core.start('albumsController');
+	Core.start('userLogo');
+	
+	}catch(err){
+		alert(err);
+	}
+
+
+});
+</script>
+
+</html>

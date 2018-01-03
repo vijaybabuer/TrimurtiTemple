@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.palpostr.tmt" version="1.1.39" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Trimurti Temple</name>
-    <description>Trimurti Temple Devasthanam is a registered Charitable Foundation. The Foundation’s mission is to build a temple in traditional Indian architectural style according to the Agama Sasthras.</description>
+<widget id="com.palpostr.palkar" version="1.1.38" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Trimurti Temple Devasthanam</name>
+    <description>Staty Connected with more than 1 Million Palkars world Wide.</description>
     <author email="welcome@palpostr.com" href="http://palpostr.com">PalPostr Team</author>
 	<access origin="whatsapp:*" launch-external="yes" />
 	<access origin="mailto:*" launch-external="yes" />	
@@ -30,6 +30,7 @@
 	<gap:plugin name="cordova-plugin-camera" source="npm" spec="2.4.0"/>
 	<gap:plugin name="cordova-plugin-device" source="npm" spec="1.1.5"/>	
 	<gap:plugin name="cordova-plugin-image-picker" source="npm" version="1.1.1" />
+	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" version="5.2.1"/>
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
@@ -125,8 +126,7 @@
 		<feature name="Notification">
 			<param name="android-package" value="org.apache.cordova.dialogs.Notification" />
 		</feature>
-
-						
+		<preference name="AndroidPersistentFileLocation" value="Compatibility" />						
     </platform>
 	
 	
@@ -149,11 +149,11 @@
     </platform>
 	
 <gap:config-file platform="ios" parent="NSCameraUsageDescription" overwrite="true">
-   <string>Camera Access for capturing Community Events by user</string>
+   <string>Camera Access for capturing Palkar Community Events by user</string>
 </gap:config-file>
 
 <gap:config-file platform="ios" parent="NSPhotoLibraryUsageDescription" overwrite="true">
-   <string>Photo Library Access to upload photos from devasthanam community.</string>
+   <string>Photo Library Access to upload photos from Palkar community.</string>
 </gap:config-file>
 
 <feature name="InAppBrowser">
@@ -162,4 +162,3 @@
 </feature>
 	
 </widget>
-	
