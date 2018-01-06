@@ -36,8 +36,8 @@ background-image: url(../../css/User-no-pic.gif);
 .ab{
 /*background-image: url(images/buttons/ButtonDefault.jpg);*/
 /*background-size: 100%; */
-background-color: #3299BB;
-color: #ffffff;
+background-color: #3299BB !important;
+color: #ffffff !important;
 }
 
 /* Align */
@@ -361,7 +361,7 @@ background-repeat: repeat-x;
 }
 .bka{
     /* Thin Antah Color Right */
-	border-bottom: 0.2em solid #3299BB;
+	/* border-bottom: 0.2em solid #3299BB; */
 }
 .bnc{
     /* Thin Cyan Bottom */
@@ -637,10 +637,10 @@ canvas{
 }
 
 .hilite{
-	background-size: 1.5em 1.5em;
-	background-repeat: no-repeat;
-	background-position: 5px center;
-	padding-left: 2em;
+	background-size: 1.5em 1.5em !important;
+	background-repeat: no-repeat !important;
+	background-position: 5px center !important;
+	padding-left: 2em !important;
 }
 
 li.PBRTRMK{

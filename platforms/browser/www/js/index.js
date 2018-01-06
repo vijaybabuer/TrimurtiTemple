@@ -45,7 +45,7 @@ var app = {
 	$.mobile.pageLoadErrorMessage = "";
 	$.mobile.pageLoadErrorMessageTheme = null;
 	
-	var appVersion = '1.1.37';
+	var appVersion = '1.1.38';
 	
 	var palpostrServerName = "http://www.palpostr.com/";
 	var appleAppStoreUrl = "https://itunes.apple.com/US/app/Palkar/id1207494642?mt=8";
@@ -54,7 +54,7 @@ var app = {
 	Core.register('clickReactionsController',clickReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('textReactionsController',textReactionsController,{relPath: "", reactionCountPerPage: "5"});
 	Core.register('storyEditController',storyEditController,{elemHandle: '#createStory', relPath: palpostrServerName, addPostTextAreaHandle: ".addPostTextArea", storiesDiv: "#storiesDiv", storyJSTemplateName: "template-storyTemplate", communityName: 'TrimurtiTempleDevasthanam'});		
-	Core.register('storyItemController',storyItemController, {relPath: "", storyPage: false, authenticatedUser: "none", storyJSTemplateName: "template-storyTemplate", getMoreStories: true, storiesDivId: "#storiesDiv", appname: "TrimurtiTempleDevasthanam", numberOfStoriesToGet: 5, serverUrl: palpostrServerName});
+	Core.register('storyItemController',storyItemController, {relPath: "", storyPage: false, authenticatedUser: "none", storyJSTemplateName: "template-storyTemplate", getMoreStories: true, storiesDivId: "#storiesDiv", appname: "TrimurtiTempleDevasthanam", numberOfStoriesToGet: 5, serverUrl: palpostrServerName, appleAppStoreUrl: appleAppStoreUrl, androidAppStoreUrl: androidAppStoreUrl});
 	Core.register('pageViewController', pageViewController, {relPath: "", palpostrHost: palpostrServerName, appVersion: appVersion, loadingText: "Welcome, <br> We are downloading your stream.", appname: "TrimurtiTempleDevasthanam", appmaintitle: "Community Updates", appextendedtitle: "This is communication tool for Trimurti Temple Devotees.", streamSize: 5, appleAppStoreUrl: appleAppStoreUrl, androidAppStoreUrl: androidAppStoreUrl});	
 	Core.register('sseController',sseController, {relPath: "", username: "guest", userAuthenticated: "false", pageHandle: "TrimurtiTempleDevasthanam"});
 	Core.register('userLoginController',userLoginController, {relPath: "", pageHandle: "TrimurtiTempleDevasthanam", palpostrHost: palpostrServerName});

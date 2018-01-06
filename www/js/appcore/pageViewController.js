@@ -1,5 +1,5 @@
 var pageViewController = function(sb, input){
-	var thisIsMobileDevice = true, storyEditorInitialized=false, albumContainerJS=null, storyEditHappening = false, documentEditHappening = false, userLogoStarted = false, placeHolderContainer=sb.dom.find("#jstemplate-pageViewController-placeHolderContainer").html(), relPathIn = input.relPath, appname=input.appname, streamSize = input.streamSize, newStream = null, storyItemControllerPublish = true, logoutAttempt=0, appOnPause = false;
+	var thisIsMobileDevice = true, storyEditorInitialized=false, albumContainerJS=null, storyEditHappening = false, documentEditHappening = false, userLogoStarted = false, placeHolderContainer=sb.dom.find("#jstemplate-pageViewController-placeHolderContainer").html(), relPathIn = input.relPath, appname=input.appname, streamSize = input.streamSize, newStream = null, storyItemControllerPublish = true, logoutAttempt=0, appOnPause = false, subContainerWidth=null;
 	
 	function _enableBigScreenFeatures(){
 		sb.dom.find(".bigScreenItem").show();
@@ -255,14 +255,21 @@ var pageViewController = function(sb, input){
 	}
 	
 	
+	function _adjustImageSizeForContainerMedia(){
+		sb.dom.find(this).removeAttr('height');
+		sb.dom.find(this).attr('width', subContainerWidth + "px");
+		
+	}
 	   function _snippetResponseReceived(snippetResponse){
     		sb.dom.find("#loading-modal").modal('close');
 		   if(snippetResponse != null){
 			   try{
 				snippetResponse = snippetResponse.trim();
-
+				
 			   sb.dom.find('.placeHolderContainer').remove();
 			   sb.dom.find('#containerDiv').prepend(snippetResponse);
+			   subContainerWidth = sb.dom.find('#containerDiv').find('.container').width();
+			   sb.dom.find('#containerDiv').find('.container').first().find('img').each(_adjustImageSizeForContainerMedia);
 			   sb.dom.find('#containerDiv').find('.container').first().find('.containerBackButton').show();
 			   sb.dom.find('#containerDiv').find('.container').first().find('.containerBackButton').bind('click', _containerBackButtonClickedV2);
 			   sb.dom.find('#containerDiv').find('.container').first().find('.containerCloseButton').show();

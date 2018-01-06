@@ -536,7 +536,7 @@ var storyItemController = function(sb, input){
 							chooserTitle: "Share With"
 						};	
 						if(storyResponse.storyitem.story){
-							options.message = storyResponse.storyitem.story + "\n\n" + "Posted By " + storyResponse.storyitem.storyAuthor + "\n\n" + "Read More on " + input.appname + " app. \n\n" + "iOS App " + input.appleAppStoreUrl + "\n\nAndroid Smart Phone App: " + input.androidAppStoreUrl;	
+							options.message = storyResponse.storyitem.story + "\n\n" + "Posted By " + storyResponse.storyitem.storyAuthor + "\n\n" + "Read More on " + input.appname + " app. \n\n";	
 						}
 						if(storyResponse.storyitem.storyTitle){
 							options.subject = storyResponse.storyitem.storyTitle;	

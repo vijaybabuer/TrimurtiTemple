@@ -449,7 +449,7 @@ Core = function(_$) {
 	function loadUserData(){
 		try{
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {				
-					fs.root.getFile("userInfo.txt", { create: false, exclusive: false }, function (fileEntry) {
+					fs.root.getFile("tmt_userInfo.txt", { create: false, exclusive: false }, function (fileEntry) {
 						readUserData(fileEntry);
 					}, function(error){createUserData('guest',null, null, null);});				
 				}, function(error){console.log('Problem Accessing File System');});		
@@ -462,7 +462,7 @@ Core = function(_$) {
 	function loadUserStream(){
 		try{
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {				
-					fs.root.getFile("userStream.txt", { create: false, exclusive: false }, function (fileEntry) {
+					fs.root.getFile("tmt_userStream.txt", { create: false, exclusive: false }, function (fileEntry) {
 						readUserStream(fileEntry);
 					}, function(error){console.log(error);});
 				}, function(error){console.log(error);});
@@ -474,7 +474,7 @@ Core = function(_$) {
 	function deleteUserStreamFromDevice(){
 		try{
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {				
-					fs.root.getFile("userStream.txt", { create: false, exclusive: false }, function (fileEntry) {
+					fs.root.getFile("tmt_userStream.txt", { create: false, exclusive: false }, function (fileEntry) {
 						fileEntry.remove(function(){
 							console.log('File Delete Success');						  
 						});
@@ -555,7 +555,7 @@ Core = function(_$) {
 	function writeUserStream(userStream){
 		
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-					fs.root.getFile("userStream.txt", { create: true, exclusive: false }, function (fileEntry) {										
+					fs.root.getFile("tmt_userStream.txt", { create: true, exclusive: false }, function (fileEntry) {										
 					writeUserStreamToDevice(fileEntry, userStream);
 					}, function(error){alert(error);});
 				
@@ -565,7 +565,7 @@ Core = function(_$) {
 	function createUserData(username, authorization, authorizationType, userDetails){
 		
 				window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-					fs.root.getFile("userInfo.txt", { create: true, exclusive: false }, function (fileEntry) {					
+					fs.root.getFile("tmt_userInfo.txt", { create: true, exclusive: false }, function (fileEntry) {					
 					var userDataTemp = {username: username, authorization: authorization, authorizationType: authorizationType, userDetails: userDetails};
 					writeUserData(fileEntry, userDataTemp);
 					}, function(error){alert(error);});
