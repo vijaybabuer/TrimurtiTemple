@@ -1016,6 +1016,8 @@ width: 50%;
 			display: none;
 		}
 		
-		.addStoryToDocument, .addAlbumToDocument, .editDocument, .deleteDocument, .PeopleDiv{
+		.addStoryToDocument, .addAlbumToDocument, .editDocument, .deleteDocument, .PeopleDiv, .storyAuthorPic, .storyAuthorName{
 			display: none;
 		}
+		
+		
