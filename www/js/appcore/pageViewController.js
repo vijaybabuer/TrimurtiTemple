@@ -624,7 +624,7 @@ var pageViewController = function(sb, input){
 				alert("Success. Please visit the Temple to redeem.");
 			})
 			.catch(function(err){
-				alert(err);
+				alert(JSON.stringify(err));
 			});
 		
 		
