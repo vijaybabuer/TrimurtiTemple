@@ -618,6 +618,7 @@ var pageViewController = function(sb, input){
 		inAppPurchase
 			.buy(productInfo.productId)
 			.then(function(data){
+				alert('Transition successful. Please visit the Trimurti Temple, Charlotte, NC');
 				alert('Data ' + JSON.strinfigy(data));
 			})
 			.then(function(){
