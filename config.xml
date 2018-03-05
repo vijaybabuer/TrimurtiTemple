@@ -31,6 +31,8 @@
 	<gap:plugin name="cordova-plugin-device" source="npm" spec="1.1.5"/>	
 	<gap:plugin name="cordova-plugin-image-picker" source="npm" version="1.1.1" />
 	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" version="5.2.1"/>
+	<gap:plugin name="cordova-plugin-inapppurchase" source="npm" version="1.1.0" />	
+	
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
@@ -107,6 +109,7 @@
 	<plugin name="cordova-plugin-device" version="1.1.5" />
 	<plugin name="cordova-plugin-file-transfer" version="1.6.1" />	
 	<plugin name="cordova-plugin-image-picker" source="npm" version="1.1.1" />	
+	<plugin name="cordova-plugin-inapppurchase" source="npm" version="1.1.0" />	
 	<plugin name="phonegap-plugin-push" spec="1.6.0">
 		<param name="SENDER_ID" value="601600954865" />
 	</plugin>	

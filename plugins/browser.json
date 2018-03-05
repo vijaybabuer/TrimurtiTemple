@@ -33,6 +33,9 @@
         },
         "cordova-plugin-image-picker": {
             "PACKAGE_NAME": "com.palpostr.palkar"
+        },
+        "cordova-plugin-inapppurchase": {
+            "PACKAGE_NAME": "com.palpostr.trimurtitemple"
         }
     },
     "dependent_plugins": {

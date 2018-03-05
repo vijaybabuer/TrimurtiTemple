@@ -77,12 +77,27 @@
 							<li class="tab col s12"><a id="profileContainerTab" href="#profileContainer"><i class="fa fa-user mf" aria-hidden="true"></i></a></li>							  
 							<li class="tab col s12"><a class="active" href="#mainContainer"><i class="fa fa-home mf" aria-hidden="true"></i></a></li>
 							<li class="tab col s12"><a id="membersTab" href="#membersContainer"><i class="fa fa-users mf" aria-hidden="true"></i></a></li>
+							<li class="tab col s12"><a id="purchaseTab" href="#purchaseContainer"><i class="fa fa-ticket mf" aria-hidden="true"></i></a></li>							
 						  </ul>					
 					<div id="profileContainer" class="col s12" style="width: 100%; margin-top: 50px;">
 						<p>You can receive realtime notifications by registering with your Facebook or Gmail Accounts.</p>
 						<p>To protect your identity, you need to login or register to use this feature. </p>
 						<a href="#loginRegisterPage" onClick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>	
-					</div>						  	
+					</div>	
+					<div id="purchaseContainer" class="col s12" style="width: 100%; margin-top: 50px;">						
+						<div class="card">
+							<div class="card-image">
+								<img class="responsive-img" src="iTunesArtWork.png"/>		
+							</div>
+							<div class="card-content">
+								<p class="cd b mf">Archana Ticket</p>
+							</div>
+							<div class="card-action row" id="buyArchanaTicket" onclick="Core.publish('buy', {productId: 'com.trimurtitemple.archanatickets'});">
+								<a class="col s3 btn white cd">Buy</a>
+							</div>							
+						</div>	
+						<p>Please show the confirmation number at the temple office for obtaining receipts.</p>
+					</div>					
 					<div class="container col s12" id="mainContainer" style="width: 100%; margin-top: 50px; ">
 						<p id="guestWelcome">You are missing out! Login or Register today to activitate tons of exciting features on the App.</p>						
 						<a class="ui-btn ui-btn-inline noshadow nd lt" id="refreshPanel" disabled>
@@ -430,6 +445,7 @@ PalPostr.COM reserves the right, at its sole discretion, to modify or replace th
 <script type="text/javascript" src="js/appcore/modules/storyItemController.js"></script>
 <script type="text/javascript" src="js/appcore/modules/sseController.js"></script>
 <script type="text/javascript" src="js/appcore/modules/userLoginController.js"></script>
+
 <script  src="js/appcore/modules/userLogo.js"></script>
   
 <script type="text/template" id="jstemplate-confirmLabel">Confirm</script>
@@ -596,6 +612,5 @@ Ex: john@example.com;sam@example.com</script>
 
 <script type="text/template" id="jstemplate-Remove-Flag"><i class="fa fa-flag" aria-hidden="true"></i> Remove Inappropriate Flag</script>
 <script type="text/template" id="jstemplate-Flag-Story"><i class="fa fa-flag-o" aria-hidden="true"></i> Flag as Inappropraiate</script>
-
 
 </html>

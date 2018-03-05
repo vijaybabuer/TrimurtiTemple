@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.palpostr.trimurtitemple" version="1.1.62" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.palpostr.trimurtitemple" version="1.1.63" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
@@ -21,6 +21,7 @@
     <gap:plugin name="cordova-plugin-device" source="npm" spec="1.1.5" />
     <gap:plugin name="cordova-plugin-image-picker" source="npm" version="1.1.1" />
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" version="5.2.1" />
+    <gap:plugin name="cordova-plugin-inapppurchase" source="npm" version="1.1.0" />
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

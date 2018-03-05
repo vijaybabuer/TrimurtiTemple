@@ -613,6 +613,22 @@ var pageViewController = function(sb, input){
 		}
 	}
 	
+	function _buyProductMessageReceived(productInfo){
+		alert(productInfo.productId);
+		inAppPurchase
+			.buy(productInfo.productId)
+			.then(function(data){
+				alert('Data ' + JSON.strinfigy(data));
+			})
+			.then(function(){
+				alert("Success. Please visit the Temple to redeem.");
+			})
+			.catch(function(err){
+				alert(err);
+			});
+		
+		
+	}
 	
 	function _startControllerV2(){
 		try{
@@ -647,7 +663,8 @@ var pageViewController = function(sb, input){
 			  	//alert('Closed'); 
 			  } // Callback for Modal close
 			}
-		  );			
+		  );	
+		  Core.subscribe('buy', _buyProductMessageReceived);
 		}catch(error){
 			alert(error);	
 		}
@@ -926,6 +943,7 @@ var pageViewController = function(sb, input){
 		
 		var userStream = sb.utilities.getUserStream();
 		//alert('_userStreamLoadedMessageReceived ' + userStream.storyItemList.length);
+		if(userStream != null){
 		sb.dom.find('#containerDiv').find("#mainContainer").find("#storiesDiv").html("<div class='chip amber lighten-1 cb'>Loading. Please wait.</div>");
 		try{
 				for(var i =0; i<userStream.storyItemList.length;i++){
@@ -937,6 +955,7 @@ var pageViewController = function(sb, input){
 				}
 		}catch(e){
 			alert(e);
+		}
 		}
 		
 	}

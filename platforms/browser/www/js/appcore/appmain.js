@@ -82,6 +82,7 @@ Core = function(_$) {
 			},	
 			
 			getUserStream: function(){
+				//alert('get user stream');
 				if(userStream == null){
 					loadUserStream();	
 				}
@@ -492,7 +493,7 @@ Core = function(_$) {
 		fileEntry.file(function (file) {
 			var reader = new FileReader();	
 			reader.onloadend = function() {
-				console.log("Successful file read: " + this.result);
+				console.log("Successful userData file read: " + this.result);
 				var userDataText = this.result;
 				userData = JSON.parse(userDataText.toString());
 			};
@@ -501,13 +502,16 @@ Core = function(_$) {
 	}
 	
 	function readUserStream(fileEntry){
+		//alert('read user stream');
 		fileEntry.file(function (file) {
 			var reader = new FileReader();	
 			reader.onloadend = function() {
-				console.log("Successful file read: " + this.result);
+				//alert("Successful userStream file read: " + this.result);
+				if(this.result != 'null'){
 				var userDataStream = this.result;
 				userStream = JSON.parse(userDataStream.toString());
 				Core.publish("userStreamLoaded", null);
+				}
 				//alert(JSON.stringify(userStream));
 			};
 			reader.readAsText(file);
