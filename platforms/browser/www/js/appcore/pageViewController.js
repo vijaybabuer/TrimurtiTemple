@@ -613,18 +613,17 @@ var pageViewController = function(sb, input){
 		}
 	}
 	
-	function _buyProductMessageReceived(productInfo){
-		alert(productInfo.productId);
+	function _buyProductMessageReceived(productInfo){		
 		inAppPurchase
 			.buy(productInfo.productId)
 			.then(function(data){
-				alert('Data ' + JSON.strinfigy(data));
+				alert('Transition successful. Please visit the Trimurti Temple, Charlotte, NC ' + JSON.stringify(data));
 			})
 			.then(function(){
 				alert("Success. Please visit the Temple to redeem.");
 			})
 			.catch(function(err){
-				alert(err);
+				alert(JSON.stringify(err));
 			});
 		
 		
