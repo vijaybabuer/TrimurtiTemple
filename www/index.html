@@ -92,8 +92,8 @@
 							<div class="card-content">
 								<p class="cd b mf">Archana Ticket</p>
 							</div>
-							<div class="card-action row" id="buyArchanaTicket" onclick="Core.publish('buy', {productId: 'com.trimurtitemple.archanatickets'});">
-								<a class="col s3 btn white cd">Buy</a>
+							<div class="card-action row" id="buyArchanaTicket" >
+								<a class="col s12 btn white cd" onclick="Core.publish('buy', {productId: 'com.trimurtitemple.archanatickets'});">Buy for $9.99</a>
 							</div>							
 						</div>	
 						<p>Please show the confirmation number at the temple office for obtaining receipts.</p>
@@ -174,11 +174,19 @@
 							<div id="deviceready"></div>
 						</div>												
 					</div>					
-					<div id="membersContainer" class="col s12 " style="width: 100%; margin-top: 50px;">
-					  <a href="#inviteFrields" class="ui-btn inviteFriendsSocial"  style="text-shadow: none; background-color: #4aaecf; color: #ffffff; margin: 0.25em;">Invite Friends</a>					
+					<div id="membersContainer" class="col s12 " style="width: 100%; margin-top: 50px;">					  
+					  <h4>Temple Members</h4>
 					  <ul class="collapsible" data-collapsible="accordion">
 						<li>
-						  <div class="collapsible-header cd mf active">Contributors</div>
+						  <div class="collapsible-header cd mf active">Founders</div>
+						  <div id="foundingMembers" class="collapsible-body row" style="padding: 5px; margin: 0px;">
+							  <div class="progress">
+								  <div class="indeterminate" ></div>
+							  </div>						  
+						  </div>
+						</li>					  
+						<li>
+						  <div class="collapsible-header cd mf ">Contributors</div>
 						  <div id="contributors"  class="collapsible-body row" style="padding: 5px; margin: 0px;">
 							  <div class="progress">
 								  <div class="indeterminate"></div>
@@ -193,17 +201,9 @@
 								  <div class="indeterminate""></div>
 							  </div>						  
 						  </div>
-						</li>
-						<li>
-						  <div class="collapsible-header cd mf ">Founders</div>
-						  <div id="foundingMembers" class="collapsible-body row" style="padding: 5px; margin: 0px;">
-							  <div class="progress">
-								  <div class="indeterminate" ></div>
-							  </div>						  
-						  </div>
 						</li>						
 					  </ul>
-					  <a href="#inviteFrields" class="ui-btn inviteFriendsSocial" style="text-shadow: none; background-color: #4aaecf; color: #ffffff; margin: 0.25em;">Invite Friends</a>	
+					  <a href="#inviteFrields" class="ui-btn inviteFriendsSocial  orange lighten-2" style="text-shadow: none; color: #ffffff; margin: 0.25em;">Invite Friends</a>	
 					  Please login or register to become member of this community.    					  
 					</div>											
 				</div>	    
@@ -357,7 +357,7 @@ PalPostr.COM reserves the right, at its sole discretion, to modify or replace th
     </div>
 	
     <div class="modal-footer">
-      <a href="eulaAgree" class="modal-action modal-close waves-effect waves-green btn-flat ">I Agree</a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat ">I Agree</a>
     </div>
   </div>
 
@@ -591,8 +591,8 @@ Ex: john@example.com;sam@example.com</script>
 	<a class="deletePhoto right btn-flat"  id="deleteLink-albumpicid" onclick="Core.publish('deleteDownloadPhoto', {photoId: 'albumpicid'})"><i class="fa fa-times"></i> Delete</a>
 </script>
 <script type="text/template" id="jstemplate-unAuthorizedAccessDialog">
-				<div id="unAuthorizedAccessDialog" class="container subContainer">
-					<p>To protect your identity, you need to login or register to use this feature. </p>
+				<div id="unAuthorizedAccessDialog" class="container subContainer" >
+					<p style="margin-top: 25px;">To protect your identity, you need to login or register to use this feature. </p>
 					<a href="#loginRegisterPage" onclick="Core.publish('initializeUserRegistration', null);" class="containerBackButton">Continue</a>
 				</div>			
 </script>

@@ -1,5 +1,5 @@
 var pageViewController = function(sb, input){
-	var thisIsMobileDevice = true, storyEditorInitialized=false, albumContainerJS=null, storyEditHappening = false, documentEditHappening = false, userLogoStarted = false, placeHolderContainer=sb.dom.find("#jstemplate-pageViewController-placeHolderContainer").html(), relPathIn = input.relPath, appname=input.appname, streamSize = input.streamSize, newStream = null, storyItemControllerPublish = true, logoutAttempt=0, appOnPause = false, subContainerWidth=null;
+	var thisIsMobileDevice = true, storyEditorInitialized=false, albumContainerJS=null, storyEditHappening = false, documentEditHappening = false, userLogoStarted = false, placeHolderContainer=sb.dom.find("#jstemplate-pageViewController-placeHolderContainer").html(), relPathIn = input.relPath, appname=input.appname, streamSize = input.streamSize, newStream = null, storyItemControllerPublish = true, logoutAttempt=0, appOnPause = false, subContainerWidth=null, globalProductInfo = null;
 	
 	function _enableBigScreenFeatures(){
 		sb.dom.find(".bigScreenItem").show();
@@ -63,7 +63,7 @@ var pageViewController = function(sb, input){
 		   var storyItemHtml = tmpl("template-storyTemplate", storyItem);	   
 		   sb.dom.find("#mainContainer").find("#storiesDiv").append(sb.utilities.htmlDecode(storyItemHtml));
 			if(storyItem.storyDocumentPageId){
-	   		   sb.dom.find("#mainContainer").find("#storiesDiv").find("#storyItem-"+storyItem.storyDocumentPageId).find('a').each(_setAnchorClickEvent);
+	   		   //sb.dom.find("#mainContainer").find("#storiesDiv").find("#storyItem-"+storyItem.storyDocumentPageId).find('a').each(_setAnchorClickEvent);
 			   if(!storyItemControllerPublish){
 				   Core.publish("newStoryAdded", {storyItemDivId: "#storyItem-"+storyItem.storyDocumentPageId});
 				}
@@ -330,7 +330,7 @@ var pageViewController = function(sb, input){
 		var storyItemNode =sb.dom.find(message.storyItemDivId);
 		scrollListContainer=storyItemNode.find('#scrollListContainer');
 		sb.dom.find(message.storyItemDivId).find('.toggleFullScreen').on('click',_toggleFullScreenEvent);
-	   	sb.dom.find(message.storyItemDivId).find('a').each(_setAnchorClickEvent);
+	   	//sb.dom.find(message.storyItemDivId).find('a').each(_setAnchorClickEvent);
 		setTimeout(_initializePicturePresentation, 1500);
 		}catch(err){
 			console.log(err);
@@ -613,9 +613,11 @@ var pageViewController = function(sb, input){
 		}
 	}
 	
-	function _buyProductMessageReceived(productInfo){		
+	function buyProductConfirm(button){
+		if(button == 2){
+		alert('Purchasing ' + globalProductInfo.productId);
 		inAppPurchase
-			.buy(productInfo.productId)
+			.buy(globalProductInfo.productId)
 			.then(function(data){
 				alert('Transition successful. Please visit the Trimurti Temple, Charlotte, NC ' + JSON.stringify(data));
 			})
@@ -624,9 +626,12 @@ var pageViewController = function(sb, input){
 			})
 			.catch(function(err){
 				alert(JSON.stringify(err));
-			});
-		
-		
+			});		
+		}
+	}
+	function _buyProductMessageReceived(productInfo){			
+		globalProductInfo = productInfo;
+		navigator.notification.confirm('Archana Tickets are valid only for 2 days from the day of Purchase.', buyProductConfirm, input.appname, 'Cancel, Buy');
 	}
 	
 	function _startControllerV2(){
@@ -659,6 +664,8 @@ var pageViewController = function(sb, input){
 				console.log(modal, trigger);
 			  },
 			  complete: function() { 
+				console.log('Modal Closed');
+				//alert("Modal Ready - complete");
 			  	//alert('Closed'); 
 			  } // Callback for Modal close
 			}
@@ -734,11 +741,11 @@ var pageViewController = function(sb, input){
    		//defaultClickReactionsDivList = sb.dom.find('.storyItemFooter');
    		//_loadPageReactionList(defaultClickReactionsDivList);
 		console.log("Click Reactions Controller Snippet Added Recieved : MEssage ID " + JSON.stringify(message));
-   		sb.dom.find(message.snippetId).find('.storyItem').each(
+   		/*sb.dom.find(message.snippetId).find('.storyItem').each(
    				function(){
 		   		   sb.dom.find(this).find('a').each(_setAnchorClickEvent);
 				}
-   		);
+   		);*/
 	}
 	
 	function _errorProcessNewStream(msg){

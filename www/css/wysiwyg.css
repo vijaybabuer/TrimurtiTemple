@@ -712,7 +712,7 @@ width: 50%;
 	margin-top: 45px;
 }
  #loginSlideScrollBar, #termsAndConditions, #inviteFriendsDiv{
-   	margin-top: 90px;
+   	margin-top: 45px;
 	background-color: #ffffff !important;
 	padding: 0px;	
  }
@@ -734,6 +734,9 @@ width: 50%;
  }
  #WhatsAppInvite, #EmailInvite{
  	font-size: 10em;
+ }
+ #loginRegistrationContainerDiv{
+	 margin-top: 0px;
  }
 .ui-radio{
 	margin: 0px;

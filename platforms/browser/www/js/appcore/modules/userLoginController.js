@@ -169,6 +169,7 @@ var userLoginController = function(sb, input){
 	function _registerButtonClick(e){
 		try{
 		setTimeout(_initializeLoginSlidesV2, 1000);
+		sb.utilities.setUserInfo('guest', null, null, null);
 		sb.dom.find("#loginDiv").find("#authorizeUser").val(sb.dom.find("#jstemplate-login-label").html());
 		sb.dom.find("#loginDiv").find("#message").html(sb.dom.find("#jstemplate-login-message").html());
 		sb.dom.find("#loginDiv").find("#authorizeUser").unbind('click', _loginUser);
