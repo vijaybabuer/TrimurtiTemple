@@ -47,7 +47,7 @@ var app = {
 	
 	var appVersion = '1.1.66';
 	
-	var palpostrServerName = "https://www.palpostr.com/";
+	var palpostrServerName = "http://192.168.0.105:8080/palpostr/";	
 	var appleAppStoreUrl = "https://itunes.apple.com/US/app/Palkar/id1207494642?mt=8";
 	var androidAppStoreUrl = "https://play.google.com/store/apps/details?id=com.palpostr.palkar";
 	

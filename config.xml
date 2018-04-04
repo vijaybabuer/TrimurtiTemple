@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.palpostr.trimurtitemple" version="1.1.67" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.palpostr.trimurtitemple" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Trimurti Temple Devasthanam</name>
     <description>This is a communication tool for the devotees of Trimurti Temple Devasthanam of Charlotte, NC</description>
     <author email="welcome@palpostr.com" href="http://palpostr.com">PalPostr Team</author>
@@ -21,7 +21,8 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-	<preference name="DisallowOverscroll" value="true" />	
+	<preference name="DisallowOverscroll" value="true" />
+	<preference name="UIWebViewBounce" value="false" />	
 	<preference name="iosPersistentFileLocation" value="Library" />	
     <gap:plugin name="cordova-plugin-statusbar" source="npm" spec="1.0.0"/>
 	<gap:plugin name="cordova-plugin-dialogs" source="npm" spec="1.3.1"/>
